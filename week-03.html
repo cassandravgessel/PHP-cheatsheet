@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 3 - Database connectie & READ | PHP Cheatsheet</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <button id="hamburger" class="hamburger">☰</button>
+  
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <div class="brand">
+          <a class="logo" href="index.html">CassCodes<span class="logo-accent">;</span></a>
+          <div class="brand-meta">
+            <div class="brand-title">PHP Cheatsheet</div>
+            <div class="brand-subtitle">Eerstejaars</div>
+          </div>
+        </div>
+        
+        <div class="search-container">
+          <div class="search-wrapper">
+            <span class="search-icon">⌘K</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Zoek in weken...">
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+      
+      <nav class="nav">
+        <div class="nav__title">Navigatie</div>
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="week-01.html" class="nav__link">Week 1 - Basics en Server-side denken</a>
+        <a href="week-02.html" class="nav__link">Week 2 - Projectstructuur en arrays</a>
+        <a href="week-03.html" class="nav__link active">Week 3 - Database connectie & READ</a>
+        <a href="week-04.html" class="nav__link">Week 4 - GET & POST</a>
+        <a href="week-05.html" class="nav__link">Week 5 - Back-end validatie</a>
+        <a href="week-06.html" class="nav__link">Week 6 - CREATE (insert)</a>
+        <a href="week-07.html" class="nav__link">Week 7 - Sessions en Gebruikersfeedback</a>
+        <a href="week-08.html" class="nav__link">Week 8 - Afronden en verbeteren</a>
+      </nav>
+    </aside>
+    
+    <main class="main">
+      <div class="content">
+        <h1 class="page-title">Week 3 – Database & READ<span class="title-accent">;</span></h1>
+        <p class="intro">In week 3 leer je hoe je data ophaalt uit een database en toont op je pagina.<br>Dit is de READ-kant van je mini-applicatie.</p>
+
+        <h2>Wat moet je kennen (samenvatting)</h2>
+        <ul>
+          <li>PDO connectie maken</li>
+          <li>Databaseconnectie in een apart bestand zetten</li>
+          <li>SELECT query uitvoeren</li>
+          <li><code>fetchAll(PDO::FETCH_ASSOC)</code> gebruiken</li>
+          <li>Resultaten opslaan in een array</li>
+          <li>Resultaten tonen met <code>foreach</code></li>
+          <li>Data en HTML combineren</li>
+        </ul>
+
+        <h2>1. PDO connectie</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Met PDO maak je een verbinding met je database.<br>Deze connectie gebruik je om queries uit te voeren.<br>In een echt project zet je deze connectie in een apart bestand (bijv. <code>includes/db.php</code>) en laad je die in met <code>require</code>.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>new PDO(...)</code></li>
+          <li>Charset <code>utf8mb4</code></li>
+          <li>Error mode instellen</li>
+          <li><code>require 'includes/db.php';</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld (includes/db.php)</h3>
+        
+        <pre><code class="lang-php">&lt;?php
+$pdo = new PDO(
+    "mysql:host=localhost;dbname=app;charset=utf8mb4",
+    "root",
+    ""
+);
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</code></pre>
+        
+        <h3 class="section-sub examples">Voorbeeld (index.php)</h3>
+        
+        <pre><code class="lang-php">&lt;?php
+require 'includes/db.php';
+?&gt;</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Zet je databaseconnectie in één bestand en hergebruik die.</p>
+        </div>
+
+        <h2>2. SELECT query uitvoeren</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Met een SELECT query haal je data op uit je database.<br>Eerst zorg je dat je connectie beschikbaar is via <code>require</code>, daarna voer je de query uit.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>$pdo-&gt;query()</code></li>
+          <li>Resultaat opslaan in <code>$stmt</code></li>
+          <li><code>fetchAll(PDO::FETCH_ASSOC)</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld (index.php)</h3>
+        
+        <pre><code class="lang-php">&lt;?php
+require 'includes/db.php';
+
+$stmt = $pdo-&gt;query("SELECT id, title FROM items");
+$items = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+?&gt;</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p><code>PDO::FETCH_ASSOC</code> zorgt dat je nette keys krijgt zoals <code>'title'</code>.</p>
+        </div>
+
+        <h2>3. Resultaten tonen met foreach</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>De opgehaalde resultaten zitten in een array.<br>Met <code>foreach</code> loop je er doorheen en maak je HTML.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>foreach ($items as $item)</code></li>
+          <li><code>$item['title']</code> gebruiken</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">echo "&lt;ul&gt;";
+
+foreach ($items as $item) {
+    echo "&lt;li&gt;" . $item['title'] . "&lt;/li&gt;";
+}
+
+echo "&lt;/ul&gt;";</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Database → array → HTML.</p>
+        </div>
+
+        <h2>Veelgemaakte fouten (kort)</h2>
+        
+        <h3>1. Geen FETCH_ASSOC gebruiken</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">$items = $stmt-&gt;fetchAll();
+echo $items[0][0];</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">$items = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+echo $items[0]['title'];</code></pre>
+        </div>
+        
+        <h3>2. foreach verkeerd gebruiken</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">foreach ($items as $title) {
+}</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">foreach ($items as $item) {
+    echo $item['title'];
+}</code></pre>
+        </div>
+        
+        <h3>3. Connectie niet apart zetten</h3>
+        <p>❌ Databasecode in elk bestand herhalen</p>
+        <p>✅ Eén keer in <code>includes/db.php</code> zetten en <code>require</code> gebruiken</p>
+
+        <h2>Video</h2>
+        
+        <div class="video-card">
+          <div class="video-card__text">
+            <h3>Uitleg volgt hier.</h3>
+          </div>
+          <div class="video-card__embed">
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/COMING_SOON"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

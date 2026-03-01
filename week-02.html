@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 2 - Projectstructuur en arrays | PHP Cheatsheet</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <button id="hamburger" class="hamburger">☰</button>
+  
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <div class="brand">
+          <a class="logo" href="index.html">CassCodes<span class="logo-accent">;</span></a>
+          <div class="brand-meta">
+            <div class="brand-title">PHP Cheatsheet</div>
+            <div class="brand-subtitle">Eerstejaars</div>
+          </div>
+        </div>
+        
+        <div class="search-container">
+          <div class="search-wrapper">
+            <span class="search-icon">⌘K</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Zoek in weken...">
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+      
+      <nav class="nav">
+        <div class="nav__title">Navigatie</div>
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="week-01.html" class="nav__link">Week 1 - Basics en Server-side denken</a>
+        <a href="week-02.html" class="nav__link active">Week 2 - Projectstructuur en arrays</a>
+        <a href="week-03.html" class="nav__link">Week 3 - Database connectie & READ</a>
+        <a href="week-04.html" class="nav__link">Week 4 - GET & POST</a>
+        <a href="week-05.html" class="nav__link">Week 5 - Back-end validatie</a>
+        <a href="week-06.html" class="nav__link">Week 6 - CREATE (insert)</a>
+        <a href="week-07.html" class="nav__link">Week 7 - Sessions en Gebruikersfeedback</a>
+        <a href="week-08.html" class="nav__link">Week 8 - Afronden en verbeteren</a>
+      </nav>
+    </aside>
+    
+    <main class="main">
+      <div class="content">
+        <h1 class="page-title">Week 2 – Projectstructuur & Includes<span class="title-accent">;</span></h1>
+        <p class="intro">In week 2 zorg je dat je project overzichtelijk en professioneel wordt opgezet.<br>Je leert code hergebruiken en data gestructureerd opslaan.</p>
+
+        <h2>Wat moet je kennen (samenvatting)</h2>
+        <ul>
+          <li>Scheiding van layout en logica</li>
+          <li>Werken met een <code>includes/</code> map</li>
+          <li><code>include</code> en <code>require</code></li>
+          <li>Associative arrays (<code>'key' =&gt; 'value'</code>)</li>
+          <li>Verschil tussen gewone arrays en associative arrays</li>
+          <li>Data uitlezen met <code>$array['key']</code></li>
+          <li>Vooruitblik: <code>fetch(PDO::FETCH_ASSOC)</code></li>
+        </ul>
+
+        <h2>1. Scheiding van layout en logica</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Grote projecten worden onoverzichtelijk als alles in één bestand staat.<br>Daarom splits je herbruikbare onderdelen (header, nav, footer) uit in aparte bestanden.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li>HTML hergebruiken via includes</li>
+          <li>PHP bovenaan, HTML daaronder</li>
+          <li>Logische mappenstructuur</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">&lt;?php
+$paginaTitel = "Home";
+include 'includes/header.php';
+include 'includes/nav.php';
+?&gt;
+
+&lt;main&gt;
+  &lt;h1&gt;&lt;?= $paginaTitel ?&gt;&lt;/h1&gt;
+&lt;/main&gt;
+
+&lt;?php include 'includes/footer.php'; ?&gt;</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Structuur bespaart tijd en voorkomt fouten.</p>
+        </div>
+
+        <h2>2. include vs require</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Beide voegen een bestand toe.<br><code>require</code> stopt het script als het bestand ontbreekt.<br><code>include</code> geeft alleen een waarschuwing en gaat door.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>include</code></li>
+          <li><code>require</code></li>
+          <li>Relatieve paden</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">include 'includes/footer.php';
+require 'includes/db.php';</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Gebruik <code>require</code> voor essentiële bestanden (zoals je database connectie).</p>
+        </div>
+
+        <h2>3. Associative arrays</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Een gewone (reguliere) array gebruikt nummers als index:<br><br><code>$kleuren = ["rood", "blauw"];</code><br><br>Een associative array gebruikt namen (keys) in plaats van nummers.<br>Dit maakt je data duidelijk en leesbaar.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li>Verschil tussen <code>$array[0]</code> en <code>$array['key']</code></li>
+          <li><code>'key' =&gt; 'value'</code></li>
+          <li>Meerdere key-value paren</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">$games = [
+    "game1" => "Zelda",
+    "game2" => "Mario"
+];
+
+echo $games["game1"];</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Keys zijn labels voor je data.</p>
+        </div>
+
+        <h2>4. Vooruitblik: fetch(PDO::FETCH_ASSOC)</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Wanneer je data uit de database haalt kan je die op verschillende manieren terugkrijgen.<br>Elke manier heeft een voor- én nadeel.<br>Omdat jij nu net geleerd hebt wat een associative array is, gaan we de database vragen om het op deze manier naar ons project terug te sturen.<br>Daarom gebruiken we <code>PDO::FETCH_ASSOC</code>.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>fetch(PDO::FETCH_ASSOC)</code></li>
+          <li><code>fetchAll(PDO::FETCH_ASSOC)</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">$item = $stmt->fetch(PDO::FETCH_ASSOC);
+echo $item["title"];</code></pre>
+
+        <h2>Veelgemaakte fouten (kort)</h2>
+        
+        <h3>1. Verkeerd pad bij include</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">include 'header.php';</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">include 'includes/header.php';</code></pre>
+        </div>
+        
+        <h3>2. Associative array lezen met index</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">echo $games[0];</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">echo $games["game1"];</code></pre>
+        </div>
+        
+        <h3>3. Alles in één bestand zetten</h3>
+        <p>❌ Header, SQL en HTML door elkaar in index.php</p>
+        <p>✅ Gebruik aparte bestanden in <code>includes/</code></p>
+
+        <h2>Video</h2>
+        
+        <div class="video-card">
+          <div class="video-card__text">
+            <h3>Uitleg volgt hier.</h3>
+          </div>
+          <div class="video-card__embed">
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/COMING_SOON"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

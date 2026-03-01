@@ -1,0 +1,5 @@
+# Ignore markdown source files
+*.md
+
+# Ignore content folder markdown
+content/*.md

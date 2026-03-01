@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 - Basics en Server-side denken | PHP Cheatsheet</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <button id="hamburger" class="hamburger">☰</button>
+  
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <div class="brand">
+          <a class="logo" href="index.html">CassCodes<span class="logo-accent">;</span></a>
+          <div class="brand-meta">
+            <div class="brand-title">PHP Cheatsheet</div>
+            <div class="brand-subtitle">Eerstejaars</div>
+          </div>
+        </div>
+        
+        <div class="search-container">
+          <div class="search-wrapper">
+            <span class="search-icon">⌘K</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Zoek in weken...">
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+      
+      <nav class="nav">
+        <div class="nav__title">Navigatie</div>
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="week-01.html" class="nav__link active">Week 1 - Basics en Server-side denken</a>
+        <a href="week-02.html" class="nav__link">Week 2 - Projectstructuur en arrays</a>
+        <a href="week-03.html" class="nav__link">Week 3 - Database connectie & READ</a>
+        <a href="week-04.html" class="nav__link">Week 4 - GET & POST</a>
+        <a href="week-05.html" class="nav__link">Week 5 - Back-end validatie</a>
+        <a href="week-06.html" class="nav__link">Week 6 - CREATE (insert)</a>
+        <a href="week-07.html" class="nav__link">Week 7 - Sessions en Gebruikersfeedback</a>
+        <a href="week-08.html" class="nav__link">Week 8 - Afronden en verbeteren</a>
+      </nav>
+    </aside>
+    
+    <main class="main">
+      <div class="content">
+        <h1 class="page-title">Week 1 – PHP Basics<span class="title-accent">;</span></h1>
+        <p class="intro">PHP draait op de server en maakt HTML dynamisch.<br>De browser ziet alleen het resultaat (HTML), nooit jouw PHP-code.</p>
+
+        <h2>Wat moet je kennen (samenvatting)</h2>
+        <ul>
+          <li>Wat server-side betekent</li>
+          <li>Verschil tussen PHP (server-side) en JavaScript (client-side)</li>
+          <li>Variabelen maken met <code>$</code></li>
+          <li>Output tonen met <code>echo</code> en <code>&lt;?= ?&gt;</code></li>
+          <li>Werken met <code>if / else</code></li>
+          <li>Boolean waarden (<code>true</code> / <code>false</code>)</li>
+          <li>Verschil tussen <code>=</code> en <code>===</code></li>
+          <li><code>date("Y")</code> gebruiken</li>
+        </ul>
+
+        <h2>1. Server-side vs Client-side</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>PHP wordt uitgevoerd op de server. De browser ontvangt alleen de gegenereerde HTML.<br>Een voorbeeld van een taal die wél direct in de browser draait is JavaScript, daarom kan je ook de code inspecteren via Inspect Element.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li>Server-side = code draait op server</li>
+          <li>Client-side = code draait in browser</li>
+          <li>PHP-code zelf is niet te zien in de browser (alleen de HTML-output)</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">&lt;?php
+$naam = "Student";
+?&gt;
+&lt;h1&gt;Welkom &lt;?= $naam ?&gt;&lt;/h1&gt;</code></pre>
+        
+        <p>Wat de browser ontvangt:</p>
+        
+        <pre><code class="lang-html">&lt;h1&gt;Welkom Student&lt;/h1&gt;</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>De PHP-code wordt op de server uitgevoerd. Alleen het resultaat (HTML) wordt naar de client gestuurd, dus de PHP-code zelf zie je niet in de browser.</p>
+        </div>
+
+        <h2>2. Variabelen & Output</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Om in PHP een waarde te laten zien in het scherm van de client typ je:<br><br><code>&lt;?php echo "Hallo"; ?&gt;</code><br><br>Maar omdat het vaak gebeurt dat je even PHP wilt openen en direct weer wilt sluiten om 1 waarde te tonen, is er een eenvoudigere manier gemaakt, namelijk:<br><br><code>&lt;?= "Hallo" ?&gt;</code></p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>$variabele</code></li>
+          <li><code>=</code></li>
+          <li><code>echo</code></li>
+          <li><code>&lt;?= ?&gt;</code> (korte echo)</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeelden</h3>
+        
+        <pre><code class="lang-php">$naam = "Cassandra";
+echo $naam;</code></pre>
+        
+        <p>of</p>
+        
+        <pre><code class="lang-php">&lt;h1&gt;&lt;?= $naam ?&gt;&lt;/h1&gt;</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p><code>=</code> wijst toe, maar toont niets. Om iets te tonen gebruik je <code>echo</code> of de korte vorm <code>&lt;?= ?&gt;</code>.</p>
+        </div>
+
+        <h2>3. If / Else</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Met een if statement bepaal je welke output wordt getoond.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>if</code></li>
+          <li><code>else</code></li>
+          <li>Boolean: <code>true</code> / <code>false</code></li>
+          <li>Vergelijken met <code>===</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">$ingelogd = true;
+
+if ($ingelogd) {
+    echo "Welkom!";
+} else {
+    echo "Log eerst in.";
+}</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p><code>=</code> is toekennen, <code>===</code> is vergelijken.</p>
+        </div>
+
+        <h2>4. Dynamische datum</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Met <code>date("Y")</code> toon je automatisch het huidige jaar.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>date("Y")</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">&lt;footer&gt;© &lt;?= date("Y") ?&gt;&lt;/footer&gt;</code></pre>
+
+        <h2>Veelgemaakte fouten (kort)</h2>
+        
+        <h3>1. <code>=</code> gebruiken in een if</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">if ($ingelogd = true)</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">if ($ingelogd === true)</code></pre>
+        </div>
+        
+        <p>of</p>
+        
+        <pre><code class="lang-php">if ($ingelogd)</code></pre>
+        
+        <h3>2. Denken dat PHP zichtbaar is in de browser</h3>
+        <p>De PHP-code draait op de server. De browser ontvangt alleen de HTML-output.</p>
+        
+        <h3>3. Echo vergeten</h3>
+        <p>Een variabele zonder <code>echo</code> toont niets.<br>Uitzondering: als je de korte vorm gebruikt, zoals <code>&lt;?= "Hallo" ?&gt;</code>, dan wordt het wél direct getoond.</p>
+
+        <h2>Video</h2>
+        
+        <div class="video-card">
+          <div class="video-card__text">
+            <h3>Uitleg volgt hier.</h3>
+          </div>
+          <div class="video-card__embed">
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/COMING_SOON"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

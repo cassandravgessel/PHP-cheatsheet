@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 7 - Sessions & Feedback | PHP Cheatsheet</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <button id="hamburger" class="hamburger">☰</button>
+  
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <div class="brand">
+          <a class="logo" href="index.html">CassCodes<span class="logo-accent">;</span></a>
+          <div class="brand-meta">
+            <div class="brand-title">PHP Cheatsheet</div>
+            <div class="brand-subtitle">Eerstejaars</div>
+          </div>
+        </div>
+        
+        <div class="search-container">
+          <div class="search-wrapper">
+            <span class="search-icon">⌘K</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Zoek in weken...">
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+      
+      <nav class="nav">
+        <div class="nav__title">Navigatie</div>
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="week-01.html" class="nav__link">Week 1 - Basics en Server-side denken</a>
+        <a href="week-02.html" class="nav__link">Week 2 - Projectstructuur en arrays</a>
+        <a href="week-03.html" class="nav__link">Week 3 - Database connectie & READ</a>
+        <a href="week-04.html" class="nav__link">Week 4 - GET & POST</a>
+        <a href="week-05.html" class="nav__link">Week 5 - Back-end validatie</a>
+        <a href="week-06.html" class="nav__link">Week 6 - CREATE (insert)</a>
+        <a href="week-07.html" class="nav__link active">Week 7 - Sessions en Gebruikersfeedback</a>
+        <a href="week-08.html" class="nav__link">Week 8 - Afronden en verbeteren</a>
+      </nav>
+    </aside>
+    
+    <main class="main">
+      <div class="content">
+        <h1 class="page-title">Week 7 – Sessions & Feedback<span class="title-accent">;</span></h1>
+        <p class="intro">In week 7 leer je hoe je tijdelijk data opslaat tussen pagina's.<br>HTTP is stateless: elke request staat op zichzelf. Sessions lossen dat op.</p>
+
+        <h2>Wat moet je kennen (samenvatting)</h2>
+        <ul>
+          <li>Wat stateless betekent</li>
+          <li><code>session_start()</code> bovenaan je bestand</li>
+          <li>Data opslaan in <code>$_SESSION</code></li>
+          <li><code>isset()</code> controleren</li>
+          <li><code>unset()</code> opruimen</li>
+          <li>Flash messages (set → redirect → show → unset)</li>
+        </ul>
+
+        <h2>1. Wat is stateless?</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>HTTP onthoudt niets tussen requests.<br>Zonder sessions weet je applicatie niet wat er eerder is gebeurd.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li>Elke pagina is een nieuwe request</li>
+          <li>Data gaat verloren zonder opslag</li>
+          <li>Sessions onthouden tijdelijk data</li>
+        </ul>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Zonder session_start() bestaat <code>$_SESSION</code> niet.</p>
+        </div>
+
+        <h2>2. Session starten</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Je moet een session starten voordat je <code>$_SESSION</code> gebruikt.<br>Dit doe je helemaal bovenaan je PHP-bestand.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>session_start();</code></li>
+          <li>Geen output vóór session_start()</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">&lt;?php
+session_start();
+
+$_SESSION['success'] = "Item toegevoegd!";
+header("Location: index.php");
+exit;</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>session_start() komt vóór alle HTML.</p>
+        </div>
+
+        <h2>3. Flash message tonen</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Een flash message is een tijdelijke melding.<br>Je toont hem één keer en verwijdert hem daarna.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>isset()</code></li>
+          <li><code>unset()</code></li>
+          <li>Melding tonen in HTML</li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">&lt;?php
+session_start();
+
+if (isset($_SESSION['success'])) {
+    echo "&lt;p&gt;" . $_SESSION['success'] . "&lt;/p&gt;";
+    unset($_SESSION['success']);
+}
+?&gt;</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>set → redirect → show → unset.</p>
+        </div>
+
+        <h2>Veelgemaakte fouten (kort)</h2>
+        
+        <h3>1. session_start vergeten</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">$_SESSION['success'] = "Gelukt!";</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">session_start();
+$_SESSION['success'] = "Gelukt!";</code></pre>
+        </div>
+        
+        <h3>2. session_start onder HTML zetten</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">&lt;h1&gt;Welkom&lt;/h1&gt;
+&lt;?php session_start(); ?&gt;</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">&lt;?php session_start(); ?&gt;
+&lt;h1&gt;Welkom&lt;/h1&gt;</code></pre>
+        </div>
+        
+        <h3>3. unset vergeten</h3>
+        <p>❌ Melding blijft steeds terugkomen</p>
+        <p>✅ Na tonen meteen <code>unset($_SESSION['success']);</code></p>
+
+        <h2>Video</h2>
+        
+        <div class="video-card">
+          <div class="video-card__text">
+            <h3>Uitleg volgt hier.</h3>
+          </div>
+          <div class="video-card__embed">
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/COMING_SOON"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

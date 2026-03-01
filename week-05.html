@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 5 - Backend Validatie | PHP Cheatsheet</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <button id="hamburger" class="hamburger">☰</button>
+  
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <div class="brand">
+          <a class="logo" href="index.html">CassCodes<span class="logo-accent">;</span></a>
+          <div class="brand-meta">
+            <div class="brand-title">PHP Cheatsheet</div>
+            <div class="brand-subtitle">Eerstejaars</div>
+          </div>
+        </div>
+        
+        <div class="search-container">
+          <div class="search-wrapper">
+            <span class="search-icon">⌘K</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Zoek in weken...">
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+      
+      <nav class="nav">
+        <div class="nav__title">Navigatie</div>
+        <a href="index.html" class="nav__link">Home</a>
+        <a href="week-01.html" class="nav__link">Week 1 - Basics en Server-side denken</a>
+        <a href="week-02.html" class="nav__link">Week 2 - Projectstructuur en arrays</a>
+        <a href="week-03.html" class="nav__link">Week 3 - Database connectie & READ</a>
+        <a href="week-04.html" class="nav__link">Week 4 - GET & POST</a>
+        <a href="week-05.html" class="nav__link active">Week 5 - Back-end validatie</a>
+        <a href="week-06.html" class="nav__link">Week 6 - CREATE (insert)</a>
+        <a href="week-07.html" class="nav__link">Week 7 - Sessions en Gebruikersfeedback</a>
+        <a href="week-08.html" class="nav__link">Week 8 - Afronden en verbeteren</a>
+      </nav>
+    </aside>
+    
+    <main class="main">
+      <div class="content">
+        <h1 class="page-title">Week 5 – Backend Validatie<span class="title-accent">;</span></h1>
+        <p class="intro">In week 5 zorg je dat gebruikersinvoer gecontroleerd wordt op de server.<br>Je vertrouwt nooit alleen op HTML-validatie.</p>
+
+        <h2>Wat moet je kennen (samenvatting)</h2>
+        <ul>
+          <li>Waarom backend validatie nodig is</li>
+          <li><code>trim()</code> gebruiken</li>
+          <li><code>empty()</code> controleren</li>
+          <li><code>strlen()</code> gebruiken voor minimale lengte</li>
+          <li><code>is_numeric()</code> gebruiken voor getallen</li>
+          <li><code>exit;</code> gebruiken om uitvoering te stoppen</li>
+        </ul>
+
+        <h2>1. Waarom backend validatie?</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>HTML-validatie (zoals <code>required</code>) kan worden omzeild.<br>Daarom controleer je invoer altijd opnieuw in PHP.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li>Frontend validatie is niet genoeg</li>
+          <li>Server controleert altijd</li>
+          <li>Foute invoer moet worden gestopt</li>
+        </ul>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>De server beslist. Niet de browser.</p>
+        </div>
+
+        <h2>2. Lege velden controleren</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Met <code>empty()</code> controleer je of een veld leeg is.<br>Met <code>trim()</code> verwijder je spaties aan het begin en einde.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>trim()</code></li>
+          <li><code>empty()</code></li>
+          <li><code>exit;</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">$naam = trim($_POST['naam'] ?? '');
+
+if (empty($naam)) {
+    echo "Naam is verplicht.";
+    exit;
+}</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Eerst opschonen (<code>trim()</code>), daarna controleren.</p>
+        </div>
+
+        <h2>3. Minimale lengte controleren</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Soms moet invoer een minimale lengte hebben.<br>Bijvoorbeeld: minimaal 3 karakters.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>strlen()</code></li>
+          <li>Vergelijken met <code>&lt;</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">if (strlen($naam) &lt; 3) {
+    echo "Naam moet minimaal 3 karakters hebben.";
+    exit;
+}</code></pre>
+
+        <h2>4. Controleren of iets een getal is</h2>
+        
+        <blockquote>
+          <p><strong>Uitleg</strong><br>Als een veld een getal moet zijn (bijv. leeftijd), controleer je dit expliciet.</p>
+        </blockquote>
+        
+        <h3 class="section-sub">Wat moet je kennen</h3>
+        <ul>
+          <li><code>is_numeric()</code></li>
+          <li>Negatie met <code>!</code></li>
+        </ul>
+        
+        <h3 class="section-sub examples">Voorbeeld</h3>
+        
+        <pre><code class="lang-php">$leeftijd = $_POST['leeftijd'] ?? '';
+
+if (!is_numeric($leeftijd)) {
+    echo "Leeftijd moet een getal zijn.";
+    exit;
+}</code></pre>
+        
+        <div class="onthoud">
+          <div class="onthoud__label">Onthoud:</div>
+          <p>Vertrouw nooit blind op invoer.</p>
+        </div>
+
+        <h2>Veelgemaakte fouten (kort)</h2>
+        
+        <h3>1. Alleen HTML-validatie gebruiken</h3>
+        <p>❌ Alleen <code>required</code> in je form zetten</p>
+        <p>✅ Altijd ook controleren in PHP</p>
+        
+        <h3>2. trim vergeten</h3>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--wrong">❌</div>
+          <pre><code class="lang-php">$naam = $_POST['naam'];</code></pre>
+        </div>
+        
+        <div class="mistake-block">
+          <div class="mistake-block__label mistake-block__label--correct">✅</div>
+          <pre><code class="lang-php">$naam = trim($_POST['naam'] ?? '');</code></pre>
+        </div>
+        
+        <h3>3. Geen exit gebruiken</h3>
+        <p>❌ Script gaat door na foutmelding</p>
+        <p>✅ Gebruik <code>exit;</code> om verdere uitvoering te stoppen</p>
+
+        <h2>Video</h2>
+        
+        <div class="video-card">
+          <div class="video-card__text">
+            <h3>Uitleg volgt hier.</h3>
+          </div>
+          <div class="video-card__embed">
+            <iframe width="560" height="315"
+              src="https://www.youtube.com/embed/COMING_SOON"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
