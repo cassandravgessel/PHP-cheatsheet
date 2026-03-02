@@ -89,7 +89,6 @@ body.pink-mode {
 html {
   font-size: 16px;
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -100,7 +99,6 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 ::selection {
@@ -423,6 +421,7 @@ body {
   flex: 1;
   margin-left: var(--sidebar-width);
   min-height: 100vh;
+  min-width: 0;
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg-elevated) 100%);
 }
 
@@ -431,6 +430,7 @@ body {
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-xl);
   animation: fadeIn 0.4s ease;
+  min-width: 0;
 }
 
 @keyframes fadeIn {
@@ -560,11 +560,15 @@ body {
   border-radius: var(--radius-md);
   padding: var(--space-lg);
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-bottom: var(--space-lg);
   font-size: 0.875rem;
   line-height: 1.6;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
   min-width: 0;
+  max-width: 100%;
+  display: block;
+  white-space: pre;
 }
 
 .content pre code {
@@ -615,6 +619,7 @@ body {
   gap: var(--space-xl);
   align-items: center;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
 }
 
 .video-card__text {
@@ -691,6 +696,7 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   min-width: 0;
+  max-width: 100%;
 }
 
 .split__label {
@@ -714,8 +720,10 @@ body {
   border: none;
   border-radius: 0;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   font-size: 0.85rem;
   line-height: 1.6;
+  max-width: 100%;
 }
 
 .split__code code {
@@ -1191,7 +1199,8 @@ body {
   .content {
     padding: var(--space-xl) var(--space-lg);
     padding-top: 4rem;
-    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: visible;
   }
 
   .video-card {
@@ -1244,6 +1253,7 @@ body {
   margin-bottom: var(--space-md);
   overflow: hidden;
   min-width: 0;
+  max-width: 100%;
 }
 
 .mistake-block pre {
