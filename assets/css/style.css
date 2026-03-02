@@ -173,7 +173,7 @@ body {
 }
 
 .logo:hover {
-  color: var(--accent);
+  color: #ffeef5;
 }
 
 .logo-accent {
@@ -228,7 +228,17 @@ body {
   transform: translateY(-50%);
   color: var(--text-muted);
   pointer-events: none;
-  font-size: 14px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
 }
 
 .search-input {
