@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 7 - Sessions & Feedback | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -94,7 +96,7 @@
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 session_start();
 
 $_SESSION['success'] = "Item toegevoegd!";
@@ -121,7 +123,7 @@ exit;</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 session_start();
 
 if (isset($_SESSION['success'])) {
@@ -141,12 +143,12 @@ if (isset($_SESSION['success'])) {
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">$_SESSION['success'] = "Gelukt!";</code></pre>
+          <pre><code class="language-php">$_SESSION['success'] = "Gelukt!";</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">session_start();
+          <pre><code class="language-php">session_start();
 $_SESSION['success'] = "Gelukt!";</code></pre>
         </div>
         
@@ -154,13 +156,13 @@ $_SESSION['success'] = "Gelukt!";</code></pre>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">&lt;h1&gt;Welkom&lt;/h1&gt;
+          <pre><code class="language-php">&lt;h1&gt;Welkom&lt;/h1&gt;
 &lt;?php session_start(); ?&gt;</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">&lt;?php session_start(); ?&gt;
+          <pre><code class="language-php">&lt;?php session_start(); ?&gt;
 &lt;h1&gt;Welkom&lt;/h1&gt;</code></pre>
         </div>
         
@@ -172,19 +174,18 @@ $_SESSION['success'] = "Gelukt!";</code></pre>
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

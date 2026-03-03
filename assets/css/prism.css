@@ -1,0 +1,10 @@
+/* Prism.js Custom Overrides - Loaded after CDN theme */
+.content pre[class*="language-"] {
+  border-radius: 8px;
+  margin: 0;
+}
+
+.content code[class*="language-"] {
+  font-size: 0.85em;
+  line-height: 1.6;
+}

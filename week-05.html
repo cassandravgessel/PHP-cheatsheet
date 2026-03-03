@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 5 - Backend Validatie | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -95,7 +97,7 @@
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">$naam = trim($_POST['naam'] ?? '');
+        <pre><code class="language-php">$naam = trim($_POST['naam'] ?? '');
 
 if (empty($naam)) {
     echo "Naam is verplicht.";
@@ -121,7 +123,7 @@ if (empty($naam)) {
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">if (strlen($naam) &lt; 3) {
+        <pre><code class="language-php">if (strlen($naam) &lt; 3) {
     echo "Naam moet minimaal 3 karakters hebben.";
     exit;
 }</code></pre>
@@ -140,7 +142,7 @@ if (empty($naam)) {
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">$leeftijd = $_POST['leeftijd'] ?? '';
+        <pre><code class="language-php">$leeftijd = $_POST['leeftijd'] ?? '';
 
 if (!is_numeric($leeftijd)) {
     echo "Leeftijd moet een getal zijn.";
@@ -162,12 +164,12 @@ if (!is_numeric($leeftijd)) {
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">$naam = $_POST['naam'];</code></pre>
+          <pre><code class="language-php">$naam = $_POST['naam'];</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">$naam = trim($_POST['naam'] ?? '');</code></pre>
+          <pre><code class="language-php">$naam = trim($_POST['naam'] ?? '');</code></pre>
         </div>
         
         <h3>3. Geen exit gebruiken</h3>
@@ -178,19 +180,18 @@ if (!is_numeric($leeftijd)) {
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

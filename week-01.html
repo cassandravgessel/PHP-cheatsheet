@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 1 - Basics en Server-side denken | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -79,14 +81,14 @@
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 $naam = "Student";
 ?&gt;
 &lt;h1&gt;Welkom &lt;?= $naam ?&gt;&lt;/h1&gt;</code></pre>
         
         <p>Wat de browser ontvangt:</p>
         
-        <pre><code class="lang-html">&lt;h1&gt;Welkom Student&lt;/h1&gt;</code></pre>
+        <pre><code class="language-markup">&lt;h1&gt;Welkom Student&lt;/h1&gt;</code></pre>
         
         <div class="onthoud">
           <div class="onthoud__label">Onthoud:</div>
@@ -109,12 +111,12 @@ $naam = "Student";
         
         <h3 class="section-sub examples">Voorbeelden</h3>
         
-        <pre><code class="lang-php">$naam = "Cassandra";
+        <pre><code class="language-php">$naam = "Cassandra";
 echo $naam;</code></pre>
         
         <p>of</p>
         
-        <pre><code class="lang-php">&lt;h1&gt;&lt;?= $naam ?&gt;&lt;/h1&gt;</code></pre>
+        <pre><code class="language-php">&lt;h1&gt;&lt;?= $naam ?&gt;&lt;/h1&gt;</code></pre>
         
         <div class="onthoud">
           <div class="onthoud__label">Onthoud:</div>
@@ -137,7 +139,7 @@ echo $naam;</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">$ingelogd = true;
+        <pre><code class="language-php">$ingelogd = true;
 
 if ($ingelogd) {
     echo "Welkom!";
@@ -163,7 +165,7 @@ if ($ingelogd) {
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">&lt;footer&gt;© &lt;?= date("Y") ?&gt;&lt;/footer&gt;</code></pre>
+        <pre><code class="language-php">&lt;footer&gt;© &lt;?= date("Y") ?&gt;&lt;/footer&gt;</code></pre>
 
         <h2>Veelgemaakte fouten (kort)</h2>
         
@@ -171,17 +173,17 @@ if ($ingelogd) {
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">if ($ingelogd = true)</code></pre>
+          <pre><code class="language-php">if ($ingelogd = true)</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">if ($ingelogd === true)</code></pre>
+          <pre><code class="language-php">if ($ingelogd === true)</code></pre>
         </div>
         
         <p>of</p>
         
-        <pre><code class="lang-php">if ($ingelogd)</code></pre>
+        <pre><code class="language-php">if ($ingelogd)</code></pre>
         
         <h3>2. Denken dat PHP zichtbaar is in de browser</h3>
         <p>De PHP-code draait op de server. De browser ontvangt alleen de HTML-output.</p>
@@ -193,19 +195,18 @@ if ($ingelogd) {
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

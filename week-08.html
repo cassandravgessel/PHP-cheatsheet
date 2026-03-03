@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 8 - Overzicht & Uitleggen | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -72,7 +74,7 @@
         
         <h3 class="section-sub">Flow-overzicht</h3>
         
-        <pre><code class="lang-text">Connectie maken (PDO)
+        <pre><code class="language-text">Connectie maken (PDO)
 ↓
 SELECT uitvoeren
 ↓
@@ -111,7 +113,7 @@ Flash message tonen</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 require 'includes/db.php';
 require 'includes/header.php';
 ?&gt;
@@ -149,12 +151,12 @@ require 'includes/header.php';
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">header("Location: index.php");</code></pre>
+          <pre><code class="language-php">header("Location: index.php");</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">header("Location: index.php");
+          <pre><code class="language-php">header("Location: index.php");
 exit;</code></pre>
         </div>
         
@@ -166,19 +168,18 @@ exit;</code></pre>
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

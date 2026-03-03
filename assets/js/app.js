@@ -162,3 +162,7 @@ if (hamburger && sidebar) {
 
 initPage();
 initPinkMode();
+
+if (typeof Prism !== 'undefined') {
+  Prism.highlightAll();
+}

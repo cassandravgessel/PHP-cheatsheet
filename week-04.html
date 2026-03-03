@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 4 - Forms (GET & POST) | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -78,9 +80,9 @@
         <h3 class="section-sub examples">Voorbeeld (GET)</h3>
         
         <p>URL:</p>
-        <pre><code class="lang-text">details.php?id=3</code></pre>
+        <pre><code class="language-text">details.php?id=3</code></pre>
         
-        <pre><code class="lang-php">$id = $_GET['id'] ?? '';
+        <pre><code class="language-php">$id = $_GET['id'] ?? '';
 echo $id;</code></pre>
         
         <div class="onthoud">
@@ -103,13 +105,13 @@ echo $id;</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-html">&lt;form method="POST" action="verwerk.php"&gt;
+        <pre><code class="language-markup">&lt;form method="POST" action="verwerk.php"&gt;
     &lt;label for="title"&gt;Titel&lt;/label&gt;
     &lt;input id="title" name="title" type="text"&gt;
     &lt;button type="submit"&gt;Opslaan&lt;/button&gt;
 &lt;/form&gt;</code></pre>
         
-        <pre><code class="lang-php">$title = $_POST['title'] ?? '';
+        <pre><code class="language-php">$title = $_POST['title'] ?? '';
 echo $title;</code></pre>
         
         <div class="onthoud">
@@ -133,12 +135,12 @@ echo $title;</code></pre>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">$title = $_POST['title'];</code></pre>
+          <pre><code class="language-php">$title = $_POST['title'];</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">$title = $_POST['title'] ?? '';</code></pre>
+          <pre><code class="language-php">$title = $_POST['title'] ?? '';</code></pre>
         </div>
 
         <h2>Veelgemaakte fouten (kort)</h2>
@@ -147,12 +149,12 @@ echo $title;</code></pre>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-html">&lt;input id="title"&gt;</code></pre>
+          <pre><code class="language-markup">&lt;input id="title"&gt;</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-html">&lt;input id="title" name="title"&gt;</code></pre>
+          <pre><code class="language-markup">&lt;input id="title" name="title"&gt;</code></pre>
         </div>
         
         <h3>2. GET gebruiken voor gevoelige data</h3>
@@ -167,19 +169,18 @@ echo $title;</code></pre>
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

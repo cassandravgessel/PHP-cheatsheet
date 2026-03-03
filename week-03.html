@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 3 - Database connectie & READ | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -79,7 +81,7 @@
         
         <h3 class="section-sub examples">Voorbeeld (includes/db.php)</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 $pdo = new PDO(
     "mysql:host=localhost;dbname=app;charset=utf8mb4",
     "root",
@@ -90,7 +92,7 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld (index.php)</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 require 'includes/db.php';
 ?&gt;</code></pre>
         
@@ -114,7 +116,7 @@ require 'includes/db.php';
         
         <h3 class="section-sub examples">Voorbeeld (index.php)</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 require 'includes/db.php';
 
 $stmt = $pdo-&gt;query("SELECT id, title FROM items");
@@ -140,7 +142,7 @@ $items = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">echo "&lt;ul&gt;";
+        <pre><code class="language-php">echo "&lt;ul&gt;";
 
 foreach ($items as $item) {
     echo "&lt;li&gt;" . $item['title'] . "&lt;/li&gt;";
@@ -159,13 +161,13 @@ echo "&lt;/ul&gt;";</code></pre>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">$items = $stmt-&gt;fetchAll();
+          <pre><code class="language-php">$items = $stmt-&gt;fetchAll();
 echo $items[0][0];</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">$items = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+          <pre><code class="language-php">$items = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
 echo $items[0]['title'];</code></pre>
         </div>
         
@@ -173,13 +175,13 @@ echo $items[0]['title'];</code></pre>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">foreach ($items as $title) {
+          <pre><code class="language-php">foreach ($items as $title) {
 }</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">foreach ($items as $item) {
+          <pre><code class="language-php">foreach ($items as $item) {
     echo $item['title'];
 }</code></pre>
         </div>
@@ -192,19 +194,18 @@ echo $items[0]['title'];</code></pre>
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

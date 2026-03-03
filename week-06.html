@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 6 - INSERT & Redirect | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -79,7 +81,7 @@
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">$title = trim($_POST['title'] ?? '');
+        <pre><code class="language-php">$title = trim($_POST['title'] ?? '');
 
 $stmt = $pdo-&gt;prepare("INSERT INTO items (title) VALUES (:title)");
 $stmt-&gt;execute([
@@ -101,14 +103,14 @@ $stmt-&gt;execute([
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">$pdo-&gt;query("INSERT INTO items (title) VALUES ('$title')");</code></pre>
+          <pre><code class="language-php">$pdo-&gt;query("INSERT INTO items (title) VALUES ('$title')");</code></pre>
         </div>
         
         <h3 class="section-sub examples">Goed voorbeeld</h3>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">$stmt = $pdo-&gt;prepare("INSERT INTO items (title) VALUES (:title)");
+          <pre><code class="language-php">$stmt = $pdo-&gt;prepare("INSERT INTO items (title) VALUES (:title)");
 $stmt-&gt;execute(['title' =&gt; $title]);</code></pre>
         </div>
 
@@ -127,7 +129,7 @@ $stmt-&gt;execute(['title' =&gt; $title]);</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">header("Location: index.php");
+        <pre><code class="language-php">header("Location: index.php");
 exit;</code></pre>
         
         <div class="onthoud">
@@ -149,12 +151,12 @@ exit;</code></pre>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">header("Location: index.php");</code></pre>
+          <pre><code class="language-php">header("Location: index.php");</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">header("Location: index.php");
+          <pre><code class="language-php">header("Location: index.php");
 exit;</code></pre>
         </div>
 
@@ -162,19 +164,18 @@ exit;</code></pre>
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Week 2 - Projectstructuur en arrays | PHP Cheatsheet</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/prism.css">
 </head>
 <body>
   <button id="hamburger" class="hamburger">☰</button>
@@ -78,7 +80,7 @@
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">&lt;?php
+        <pre><code class="language-php">&lt;?php
 $paginaTitel = "Home";
 include 'includes/header.php';
 include 'includes/nav.php';
@@ -110,7 +112,7 @@ include 'includes/nav.php';
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">include 'includes/footer.php';
+        <pre><code class="language-php">include 'includes/footer.php';
 require 'includes/db.php';</code></pre>
         
         <div class="onthoud">
@@ -133,7 +135,7 @@ require 'includes/db.php';</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">$games = [
+        <pre><code class="language-php">$games = [
     "game1" => "Zelda",
     "game2" => "Mario"
 ];
@@ -159,7 +161,7 @@ echo $games["game1"];</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld</h3>
         
-        <pre><code class="lang-php">$item = $stmt->fetch(PDO::FETCH_ASSOC);
+        <pre><code class="language-php">$item = $stmt->fetch(PDO::FETCH_ASSOC);
 echo $item["title"];</code></pre>
 
         <h2>Veelgemaakte fouten (kort)</h2>
@@ -168,24 +170,24 @@ echo $item["title"];</code></pre>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">include 'header.php';</code></pre>
+          <pre><code class="language-php">include 'header.php';</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">include 'includes/header.php';</code></pre>
+          <pre><code class="language-php">include 'includes/header.php';</code></pre>
         </div>
         
         <h3>2. Associative array lezen met index</h3>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--wrong">❌</div>
-          <pre><code class="lang-php">echo $games[0];</code></pre>
+          <pre><code class="language-php">echo $games[0];</code></pre>
         </div>
         
         <div class="mistake-block">
           <div class="mistake-block__label mistake-block__label--correct">✅</div>
-          <pre><code class="lang-php">echo $games["game1"];</code></pre>
+          <pre><code class="language-php">echo $games["game1"];</code></pre>
         </div>
         
         <h3>3. Alles in één bestand zetten</h3>
@@ -196,19 +198,18 @@ echo $item["title"];</code></pre>
         
         <div class="video-card">
           <div class="video-card__text">
-            <h3>Uitleg volgt hier.</h3>
-          </div>
-          <div class="video-card__embed">
-            <iframe width="560" height="315"
-              src="https://www.youtube.com/embed/COMING_SOON"
-              frameborder="0"
-              allowfullscreen></iframe>
+            <h3>Video komt eraan</h3>
+            <p>Deze video komt eraan. Zodra hij live staat, zet ik hem hier neer.</p>
           </div>
         </div>
       </div>
     </main>
   </div>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
