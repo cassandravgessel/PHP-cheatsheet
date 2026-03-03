@@ -159,17 +159,17 @@ body {
 .brand {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: var(--space-lg);
+  gap: 8px;
+  margin-bottom: var(--space-xl);
 }
 
 .logo {
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1.75rem;
   letter-spacing: -0.02em;
   color: #ffffff;
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: color 0.2s ease;
 }
 
 .logo:hover {
@@ -1219,6 +1219,10 @@ body {
 
   .split {
     grid-template-columns: 1fr;
+  }
+
+  .logo {
+    font-size: 1.4rem;
   }
 
   .content h1 {
