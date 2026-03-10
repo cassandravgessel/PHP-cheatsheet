@@ -74,7 +74,6 @@
         <h3 class="section-sub">Wat moet je kennen</h3>
         <ul>
           <li><code>new PDO(...)</code></li>
-          <li>Charset <code>utf8mb4</code></li>
           <li>Error mode instellen</li>
           <li><code>require 'includes/db.php';</code></li>
         </ul>
@@ -82,13 +81,13 @@
         <h3 class="section-sub examples">Voorbeeld (includes/db.php)</h3>
         
         <pre><code class="language-php">&lt;?php
-$pdo = new PDO(
-    "mysql:host=localhost;dbname=app;charset=utf8mb4",
-    "root",
-    ""
-);
 
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</code></pre>
+$username = "root";
+$password = "";
+
+
+$conn = new PDO("mysql:host=localhost;dbname=pokemon", $username, $password);
+          ;</code></pre>
         
         <h3 class="section-sub examples">Voorbeeld (index.php)</h3>
         
@@ -119,8 +118,9 @@ require 'includes/db.php';
         <pre><code class="language-php">&lt;?php
 require 'includes/db.php';
 
-$stmt = $pdo-&gt;query("SELECT id, title FROM items");
-$items = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);
+$pokemons = $conn->prepare("SELECT * FROM cards");
+$pokemons->execute();
+$bakje_met_pokemons = $pokemons->fetchAll(PDO::FETCH_ASSOC);
 ?&gt;</code></pre>
         
         <div class="onthoud">
