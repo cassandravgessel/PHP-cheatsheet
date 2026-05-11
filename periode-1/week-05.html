@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Week 5 – Backend Validatie In week 5 zorg je dat gebruikersinvoer gecontroleerd wordt op de server. Je vertrouwt nooit alleen op HTML validatie. Wat moet j">
+  <title>Periode 1 · Week 5 – Backend Validatie | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="1" data-week="5">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 1</div>
+    <a href="../periode-1/week-01.html" class="nav__link "><span>Week 1</span><small>PHP Basics</small></a>
+    <a href="../periode-1/week-02.html" class="nav__link "><span>Week 2</span><small>Projectstructuur &amp; Includes</small></a>
+    <a href="../periode-1/week-03.html" class="nav__link "><span>Week 3</span><small>Database &amp; READ</small></a>
+    <a href="../periode-1/week-04.html" class="nav__link "><span>Week 4</span><small>Forms (GET &amp; POST)</small></a>
+    <a href="../periode-1/week-05.html" class="nav__link active"><span>Week 5</span><small>Backend Validatie</small></a>
+    <a href="../periode-1/week-06.html" class="nav__link "><span>Week 6</span><small>INSERT &amp; Redirect (PRG)</small></a>
+    <a href="../periode-1/week-07.html" class="nav__link "><span>Week 7</span><small>Sessions &amp; Feedback</small></a>
+    <a href="../periode-1/week-08.html" class="nav__link "><span>Week 8</span><small>Overzicht &amp; Uitleggen</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link is-period">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link ">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 1 · Week 5</p>
+  <h1>Week 5 – Backend Validatie<span class="title-accent">;</span></h1>
+  <p class="intro">In week 5 zorg je dat gebruikersinvoer gecontroleerd wordt op de server.<br>Je vertrouwt nooit alleen op HTML-validatie.</p>
+</header>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen (samenvatting)</h2>
+<ul>
+<li>Waarom backend validatie nodig is</li>
+<li><code>trim()</code> gebruiken</li>
+<li><code>empty()</code> controleren</li>
+<li><code>strlen()</code> gebruiken voor minimale lengte</li>
+<li><code>is_numeric()</code> gebruiken voor getallen</li>
+<li><code>exit;</code> gebruiken om uitvoering te stoppen</li>
+</ul>
+<h2 id="1-waarom-backend-validatie">1. Waarom backend validatie?</h2>
+<blockquote><p><strong>Uitleg</strong><br>HTML-validatie (zoals <code>required</code>) kan worden omzeild.<br>Daarom controleer je invoer altijd opnieuw in PHP.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>Frontend validatie is niet genoeg</li>
+<li>Server controleert altijd</li>
+<li>Foute invoer moet worden gestopt</li>
+</ul>
+<blockquote><p><strong>Onthoud:</strong> De server beslist. Niet de browser.</p></blockquote>
+<h2 id="2-lege-velden-controleren">2. Lege velden controleren</h2>
+<blockquote><p><strong>Uitleg</strong><br>Met <code>empty()</code> controleer je of een veld leeg is.<br>Met <code>trim()</code> verwijder je spaties aan het begin en einde.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>trim()</code></li>
+<li><code>empty()</code></li>
+<li><code>exit;</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$naam = trim($_POST['naam'] ?? '');
+
+if (empty($naam)) {
+    echo "Naam is verplicht.";
+    exit;
+}</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Eerst opschonen (<code>trim()</code>), daarna controleren.</p></blockquote>
+<h2 id="3-minimale-lengte-controleren">3. Minimale lengte controleren</h2>
+<blockquote><p><strong>Uitleg</strong><br>Soms moet invoer een minimale lengte hebben.<br>Bijvoorbeeld: minimaal 3 karakters.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>strlen()</code></li>
+<li>Vergelijken met <code>&lt;</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">if (strlen($naam) &lt; 3) {
+    echo "Naam moet minimaal 3 karakters hebben.";
+    exit;
+}</code></pre>
+<h2 id="4-controleren-of-iets-een-getal-is">4. Controleren of iets een getal is</h2>
+<blockquote><p><strong>Uitleg</strong><br>Als een veld een getal moet zijn (bijv. leeftijd), controleer je dit expliciet.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>is_numeric()</code></li>
+<li>Negatie met <code>!</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$leeftijd = $_POST['leeftijd'] ?? '';
+
+if (!is_numeric($leeftijd)) {
+    echo "Leeftijd moet een getal zijn.";
+    exit;
+}</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Vertrouw nooit blind op invoer.</p></blockquote>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (kort)</h2>
+<h3>1. Alleen HTML-validatie gebruiken</h3>
+<p>❌ Alleen <code>required</code> in je form zetten</p>
+<p>✅ Altijd ook controleren in PHP</p>
+<h3>2. trim vergeten</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$naam = $_POST['naam'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$naam = trim($_POST['naam'] ?? '');</code></pre>
+<h3>3. Geen exit gebruiken</h3>
+<p>❌ Script gaat door na foutmelding</p>
+<p>✅ Gebruik <code>exit;</code> om verdere uitvoering te stoppen</p>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>

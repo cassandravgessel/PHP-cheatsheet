@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Week 7 – Sessions &amp; Feedback In week 7 leer je hoe je tijdelijk data opslaat tussen pagina’s. HTTP is stateless: elke request staat op zichzelf. Sessions l">
+  <title>Periode 1 · Week 7 – Sessions &amp; Feedback | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="1" data-week="7">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 1</div>
+    <a href="../periode-1/week-01.html" class="nav__link "><span>Week 1</span><small>PHP Basics</small></a>
+    <a href="../periode-1/week-02.html" class="nav__link "><span>Week 2</span><small>Projectstructuur &amp; Includes</small></a>
+    <a href="../periode-1/week-03.html" class="nav__link "><span>Week 3</span><small>Database &amp; READ</small></a>
+    <a href="../periode-1/week-04.html" class="nav__link "><span>Week 4</span><small>Forms (GET &amp; POST)</small></a>
+    <a href="../periode-1/week-05.html" class="nav__link "><span>Week 5</span><small>Backend Validatie</small></a>
+    <a href="../periode-1/week-06.html" class="nav__link "><span>Week 6</span><small>INSERT &amp; Redirect (PRG)</small></a>
+    <a href="../periode-1/week-07.html" class="nav__link active"><span>Week 7</span><small>Sessions &amp; Feedback</small></a>
+    <a href="../periode-1/week-08.html" class="nav__link "><span>Week 8</span><small>Overzicht &amp; Uitleggen</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link is-period">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link ">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 1 · Week 7</p>
+  <h1>Week 7 – Sessions &amp; Feedback<span class="title-accent">;</span></h1>
+  <p class="intro">In week 7 leer je hoe je tijdelijk data opslaat tussen pagina’s.<br>HTTP is stateless: elke request staat op zichzelf. Sessions lossen dat op.</p>
+</header>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen (samenvatting)</h2>
+<ul>
+<li>Wat stateless betekent</li>
+<li><code>session_start()</code> bovenaan je bestand</li>
+<li>Data opslaan in <code>$_SESSION</code></li>
+<li><code>isset()</code> controleren</li>
+<li><code>unset()</code> opruimen</li>
+<li>Flash messages (set → redirect → show → unset)</li>
+</ul>
+<h2 id="1-wat-is-stateless">1. Wat is stateless?</h2>
+<blockquote><p><strong>Uitleg</strong><br>HTTP onthoudt niets tussen requests.<br>Zonder sessions weet je applicatie niet wat er eerder is gebeurd.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>Elke pagina is een nieuwe request</li>
+<li>Data gaat verloren zonder opslag</li>
+<li>Sessions onthouden tijdelijk data</li>
+</ul>
+<blockquote><p><strong>Onthoud:</strong> Zonder session_start() bestaat <code>$_SESSION</code> niet.</p></blockquote>
+<h2 id="2-session-starten">2. Session starten</h2>
+<blockquote><p><strong>Uitleg</strong><br>Je moet een session starten voordat je <code>$_SESSION</code> gebruikt.<br>Dit doe je helemaal bovenaan je PHP-bestand.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>session_start();</code></li>
+<li>Geen output vóór session_start()</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;?php
+session_start();
+
+$_SESSION['success'] = "Item toegevoegd!";
+header("Location: index.php");
+exit;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> session_start() komt vóór alle HTML.</p></blockquote>
+<h2 id="3-flash-message-tonen">3. Flash message tonen</h2>
+<blockquote><p><strong>Uitleg</strong><br>Een flash message is een tijdelijke melding.<br>Je toont hem één keer en verwijdert hem daarna.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>isset()</code></li>
+<li><code>unset()</code></li>
+<li>Melding tonen in HTML</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;?php
+session_start();
+
+if (isset($_SESSION['success'])) {
+    echo "&lt;p&gt;" . $_SESSION['success'] . "&lt;/p&gt;";
+    unset($_SESSION['success']);
+}
+?&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> set → redirect → show → unset.</p></blockquote>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (kort)</h2>
+<h3>1. session_start vergeten</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$_SESSION['success'] = "Gelukt!";</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">session_start();
+$_SESSION['success'] = "Gelukt!";</code></pre>
+<h3>2. session_start onder HTML zetten</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">&lt;h1&gt;Welkom&lt;/h1&gt;
+&lt;?php session_start(); ?&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">&lt;?php session_start(); ?&gt;
+&lt;h1&gt;Welkom&lt;/h1&gt;</code></pre>
+<h3>3. unset vergeten</h3>
+<p>❌ Melding blijft steeds terugkomen</p>
+<p>✅ Na tonen meteen <code>unset($_SESSION['success']);</code></p>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Week 1 – PHP Basics PHP draait op de server en maakt HTML dynamisch. De browser ziet alleen het resultaat (HTML), nooit jouw PHP code. Wat moet je kennen (">
+  <title>Periode 1 · Week 1 – PHP Basics | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="1" data-week="1">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 1</div>
+    <a href="../periode-1/week-01.html" class="nav__link active"><span>Week 1</span><small>PHP Basics</small></a>
+    <a href="../periode-1/week-02.html" class="nav__link "><span>Week 2</span><small>Projectstructuur &amp; Includes</small></a>
+    <a href="../periode-1/week-03.html" class="nav__link "><span>Week 3</span><small>Database &amp; READ</small></a>
+    <a href="../periode-1/week-04.html" class="nav__link "><span>Week 4</span><small>Forms (GET &amp; POST)</small></a>
+    <a href="../periode-1/week-05.html" class="nav__link "><span>Week 5</span><small>Backend Validatie</small></a>
+    <a href="../periode-1/week-06.html" class="nav__link "><span>Week 6</span><small>INSERT &amp; Redirect (PRG)</small></a>
+    <a href="../periode-1/week-07.html" class="nav__link "><span>Week 7</span><small>Sessions &amp; Feedback</small></a>
+    <a href="../periode-1/week-08.html" class="nav__link "><span>Week 8</span><small>Overzicht &amp; Uitleggen</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link is-period">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link ">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 1 · Week 1</p>
+  <h1>Week 1 – PHP Basics<span class="title-accent">;</span></h1>
+  <p class="intro">PHP draait op de server en maakt HTML dynamisch.  <br>De browser ziet alleen het resultaat (HTML), nooit jouw PHP-code.</p>
+</header>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen (samenvatting)</h2>
+<ul>
+<li>Wat server-side betekent</li>
+<li>Verschil tussen PHP (server-side) en JavaScript (client-side)</li>
+<li>Variabelen maken met <code>$</code></li>
+<li>Output tonen met <code>echo</code> en <code>&lt;?= ?&gt;</code></li>
+<li>Werken met <code>if / else</code></li>
+<li>Boolean waarden (<code>true</code> / <code>false</code>)</li>
+<li>Verschil tussen <code>=</code> en <code>===</code></li>
+<li><code>date("Y")</code> gebruiken</li>
+</ul>
+<h2 id="1-server-side-vs-client-side">1. Server-side vs Client-side</h2>
+<blockquote><p><strong>Uitleg</strong><br>PHP wordt uitgevoerd op de server. De browser ontvangt alleen de gegenereerde HTML.<br>Een voorbeeld van een taal die wél direct in de browser draait is JavaScript, daarom kan je ook de code inspecteren via Inspect Element.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>Server-side = code draait op server</li>
+<li>Client-side = code draait in browser</li>
+<li>PHP-code zelf is niet te zien in de browser (alleen de HTML-output)</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;?php
+$naam = "Student";
+?&gt;
+&lt;h1&gt;Welkom &lt;?= $naam ?&gt;&lt;/h1&gt;</code></pre>
+<p>Wat de browser ontvangt:</p>
+<pre data-lang="html"><code class="language-html">&lt;h1&gt;Welkom Student&lt;/h1&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> De PHP-code wordt op de server uitgevoerd. Alleen het resultaat (HTML) wordt naar de client gestuurd, dus de PHP-code zelf zie je niet in de browser.</p></blockquote>
+<h2 id="2-variabelen-en-output">2. Variabelen &amp; Output</h2>
+<blockquote><p><strong>Uitleg</strong><br>Om in PHP een waarde te laten zien in het scherm van de client typ je:<br><br><code>&lt;?php echo "Hallo"; ?&gt;</code><br><br>Maar omdat het vaak gebeurt dat je even PHP wilt openen en direct weer wilt sluiten om 1 waarde te tonen, is er een eenvoudigere manier gemaakt, namelijk:<br><br><code>&lt;?= "Hallo" ?&gt;</code></p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>$variabele</code></li>
+<li><code>=</code></li>
+<li><code>echo</code></li>
+<li><code>&lt;?= ?&gt;</code> (korte echo)</li>
+</ul>
+<h3>Voorbeelden</h3>
+<pre data-lang="php"><code class="language-php">$naam = "Cassandra";
+echo $naam;</code></pre>
+<p>of</p>
+<pre data-lang="php"><code class="language-php">&lt;h1&gt;&lt;?= $naam ?&gt;&lt;/h1&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>=</code> wijst toe, maar toont niets. Om iets te tonen gebruik je <code>echo</code> of de korte vorm <code>&lt;?= ?&gt;</code>.</p></blockquote>
+<h2 id="3-if-else">3. If / Else</h2>
+<blockquote><p><strong>Uitleg</strong><br>Met een if statement bepaal je welke output wordt getoond.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>if</code></li>
+<li><code>else</code></li>
+<li>Boolean: <code>true</code> / <code>false</code></li>
+<li>Vergelijken met <code>===</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$ingelogd = true;
+
+if ($ingelogd) {
+    echo "Welkom!";
+} else {
+    echo "Log eerst in.";
+}</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>=</code> is toekennen, <code>===</code> is vergelijken.</p></blockquote>
+<h2 id="4-dynamische-datum">4. Dynamische datum</h2>
+<blockquote><p><strong>Uitleg</strong><br>Met <code>date("Y")</code> toon je automatisch het huidige jaar.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>date("Y")</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;footer&gt;© &lt;?= date("Y") ?&gt;&lt;/footer&gt;</code></pre>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (kort)</h2>
+<h3>1. <code>=</code> gebruiken in een if</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">if ($ingelogd = true)</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">if ($ingelogd === true)</code></pre>
+<p>of</p>
+<pre data-lang="php"><code class="language-php">if ($ingelogd)</code></pre>
+<h3>2. Denken dat PHP zichtbaar is in de browser</h3>
+<p>De PHP-code draait op de server. De browser ontvangt alleen de HTML-output.</p>
+<h3>3. Echo vergeten</h3>
+<p>Een variabele zonder <code>echo</code> toont niets.</p>
+<p>Uitzondering: als je de korte vorm gebruikt, zoals <code>&lt;?= "Hallo" ?&gt;</code>, dan wordt het wél direct getoond.</p>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>

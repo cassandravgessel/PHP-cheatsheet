@@ -3,112 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PHP Cheatsheet - Homepage</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="description" content="PHP Cheatsheet voor eerstejaars Software Development.">
+  <title>Homepage | CassCodes PHP Cheatsheet</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/prism.css">
 </head>
-<body>
-  <button id="hamburger" class="hamburger">☰</button>
-  
+<body data-period="1" data-week="0">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
   <div class="app">
     <aside id="sidebar" class="sidebar">
       <div class="sidebar__header">
-        <div class="brand">
-          <a class="logo" href="index.html">CassCodes<span class="logo-accent">;</span></a>
-          <div class="brand-meta">
-            <div class="brand-title">PHP Cheatsheet</div>
-            <div class="brand-subtitle">Eerstejaars</div>
-          </div>
-        </div>
-        
-        <div class="search-container">
-          <div class="search-wrapper">
-            <span class="search-icon">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-              </svg>
-            </span>
-            <input type="text" id="search-input" class="search-input" placeholder="Zoek in weken...">
-          </div>
-          <div id="search-results" class="search-results"></div>
-        </div>
+        <a class="logo" href="index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
       </div>
-      
-      <nav class="nav">
-        <div class="nav__title">Navigatie</div>
-        <a href="index.html" class="nav__link active">Home</a>
-        <a href="week-01.html" class="nav__link">Week 1 - Basics en Server-side denken</a>
-        <a href="week-02.html" class="nav__link">Week 2 - Projectstructuur en arrays</a>
-        <a href="week-03.html" class="nav__link">Week 3 - Database connectie & READ</a>
-        <a href="week-04.html" class="nav__link">Week 4 - GET & POST</a>
-        <a href="week-05.html" class="nav__link">Week 5 - Back-end validatie</a>
-        <a href="week-06.html" class="nav__link">Week 6 - CREATE (insert)</a>
-        <a href="week-07.html" class="nav__link">Week 7 - Sessions en Gebruikersfeedback</a>
-        <a href="week-08.html" class="nav__link">Week 8 - Afronden en verbeteren</a>
-      </nav>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="index.html" class="nav__link active">Home</a>
+    <div class="nav__title">Periode 1</div>
+    <a href="periode-1/week-01.html" class="nav__link "><span>Week 1</span><small>PHP Basics</small></a>
+    <a href="periode-1/week-02.html" class="nav__link "><span>Week 2</span><small>Projectstructuur &amp; Includes</small></a>
+    <a href="periode-1/week-03.html" class="nav__link "><span>Week 3</span><small>Database &amp; READ</small></a>
+    <a href="periode-1/week-04.html" class="nav__link "><span>Week 4</span><small>Forms (GET &amp; POST)</small></a>
+    <a href="periode-1/week-05.html" class="nav__link "><span>Week 5</span><small>Backend Validatie</small></a>
+    <a href="periode-1/week-06.html" class="nav__link "><span>Week 6</span><small>INSERT &amp; Redirect (PRG)</small></a>
+    <a href="periode-1/week-07.html" class="nav__link "><span>Week 7</span><small>Sessions &amp; Feedback</small></a>
+    <a href="periode-1/week-08.html" class="nav__link "><span>Week 8</span><small>Overzicht &amp; Uitleggen</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="periode-1/week-01.html" class="nav__link is-period">Naar periode 1</a>
+    <a href="periode-2/week-01.html" class="nav__link ">Naar periode 2</a>
+  </nav>
     </aside>
-    
     <main class="main">
       <div class="content">
-        <div class="hero">
-          <h1 class="page-title">PHP Cheatsheet<span class="title-accent">;</span></h1>
-          <p class="hero__subtitle">Eerstejaars – Software Development</p>
-          <p class="hero__description">Per week leer je precies wat je moet kennen om een PHP webapplicatie te bouwen. Kort. Duidelijk. Praktisch.</p>
-        </div>
-
-        <h2>Weken</h2>
-        <div class="week-grid">
-          <a href="week-01.html" class="week-card">
-            <div class="week-card__title">Week 1 – Basics en Server-side denken</div>
-            <div class="week-card__summary">PHP basics, server-side vs client-side, if/else</div>
-          </a>
-          <a href="week-02.html" class="week-card">
-            <div class="week-card__title">Week 2 – Projectstructuur en arrays</div>
-            <div class="week-card__summary">Includes, require, associative arrays</div>
-          </a>
-          <a href="week-03.html" class="week-card">
-            <div class="week-card__title">Week 3 – Database connectie & READ</div>
-            <div class="week-card__summary">PDO, SELECT, fetchAll, foreach</div>
-          </a>
-          <a href="week-04.html" class="week-card">
-            <div class="week-card__title">Week 4 – GET & POST</div>
-            <div class="week-card__summary">GET vs POST, formulieren</div>
-          </a>
-          <a href="week-05.html" class="week-card">
-            <div class="week-card__title">Week 5 – Back-end validatie</div>
-            <div class="week-card__summary">trim, empty, strlen, is_numeric</div>
-          </a>
-          <a href="week-06.html" class="week-card">
-            <div class="week-card__title">Week 6 – CREATE (insert)</div>
-            <div class="week-card__summary">INSERT, prepared statements, redirect</div>
-          </a>
-          <a href="week-07.html" class="week-card">
-            <div class="week-card__title">Week 7 – Sessions en Gebruikersfeedback</div>
-            <div class="week-card__summary">$_SESSION, flash messages</div>
-          </a>
-          <a href="week-08.html" class="week-card">
-            <div class="week-card__title">Week 8 – Afronden en verbeteren</div>
-            <div class="week-card__summary">Complete flow, mondeling voorbereiden</div>
-          </a>
-        </div>
-
-        <div class="skills-section">
-          <h2>Wat kun je na week 8?</h2>
-          <ul>
-            <li>Database connectie maken</li>
-            <li>Data lezen en toevoegen</li>
-            <li>Forms veilig verwerken</li>
-            <li>Feedback tonen met sessions</li>
-          </ul>
-        </div>
+<header class="hero">
+  <p class="eyebrow">Eerstejaars Software Development</p>
+  <h1>PHP Cheatsheet<span class="title-accent">;</span></h1>
+  <p class="hero__description">Kies je periode en gebruik de weekpagina's als rustige, praktische uitleg naast je opdrachten.</p>
+</header>
+<section class="period-grid" aria-label="Periodes">
+  <article class="period-card">
+    <p class="eyebrow">Periode 1</p>
+    <h2>PHP basis, Create &amp; Read</h2>
+    <p>Je leert hoe PHP op de server werkt, hoe je projecten structureert en hoe je data leest en toevoegt met PDO.</p>
+    <ul>
+      <li>PHP basics en server-side denken</li>
+      <li>Includes, arrays en projectstructuur</li>
+      <li>Database READ, formulieren, validatie en INSERT</li>
+    </ul>
+    <a class="button-link" href="periode-1/week-01.html">Start periode 1</a>
+  </article>
+  <article class="period-card">
+    <p class="eyebrow">Periode 2</p>
+    <h2>CRUD, login &amp; sessions</h2>
+    <p>Je bouwt verder aan bewerken, verwijderen, registreren, inloggen en pagina's beschermen met sessions.</p>
+    <ul>
+      <li>Editpagina's, UPDATE en DELETE</li>
+      <li>CRUD-overzicht en accountregistratie</li>
+      <li>Login, beveiligde pagina's en dynamische menu's</li>
+    </ul>
+    <a class="button-link" href="periode-2/week-01.html">Start periode 2</a>
+  </article>
+</section>
+<section class="quick-start">
+  <h2>Zo gebruik je deze cheatsheet</h2>
+  <p>Begin bij de week van je opdracht. Zoek op termen zoals <code>PDO</code>, <code>session</code>, <code>UPDATE</code> of <code>formulier</code> om direct naar de juiste uitleg te springen.</p>
+</section>
       </div>
     </main>
   </div>
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/app.js" defer></script>
 </body>
 </html>

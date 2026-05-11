@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Week 8 – Overzicht &amp; Uitleggen In week 8 breng je alles samen. Je moet niet alleen kunnen bouwen, maar ook kunnen uitleggen wat je doet en waarom. Wat moet">
+  <title>Periode 1 · Week 8 – Overzicht &amp; Uitleggen | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="1" data-week="8">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 1</div>
+    <a href="../periode-1/week-01.html" class="nav__link "><span>Week 1</span><small>PHP Basics</small></a>
+    <a href="../periode-1/week-02.html" class="nav__link "><span>Week 2</span><small>Projectstructuur &amp; Includes</small></a>
+    <a href="../periode-1/week-03.html" class="nav__link "><span>Week 3</span><small>Database &amp; READ</small></a>
+    <a href="../periode-1/week-04.html" class="nav__link "><span>Week 4</span><small>Forms (GET &amp; POST)</small></a>
+    <a href="../periode-1/week-05.html" class="nav__link "><span>Week 5</span><small>Backend Validatie</small></a>
+    <a href="../periode-1/week-06.html" class="nav__link "><span>Week 6</span><small>INSERT &amp; Redirect (PRG)</small></a>
+    <a href="../periode-1/week-07.html" class="nav__link "><span>Week 7</span><small>Sessions &amp; Feedback</small></a>
+    <a href="../periode-1/week-08.html" class="nav__link active"><span>Week 8</span><small>Overzicht &amp; Uitleggen</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link is-period">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link ">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 1 · Week 8</p>
+  <h1>Week 8 – Overzicht &amp; Uitleggen<span class="title-accent">;</span></h1>
+  <p class="intro">In week 8 breng je alles samen.<br>Je moet niet alleen kunnen bouwen, maar ook kunnen uitleggen wat je doet en waarom.</p>
+</header>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen (samenvatting)</h2>
+<ul>
+<li>Hoe de volledige flow van je applicatie werkt</li>
+<li>PDO connectie</li>
+<li>SELECT + foreach (READ)</li>
+<li>INSERT + prepared statements (CREATE)</li>
+<li>Backend validatie</li>
+<li>Sessions voor feedback</li>
+<li>Redirect (PRG pattern)</li>
+<li>Werken met includes voor structuur</li>
+</ul>
+<h2 id="1-de-complete-applicatie-flow">1. De complete applicatie-flow</h2>
+<blockquote><p><strong>Uitleg</strong><br>Je mini-app heeft nu een vaste structuur.<br>Elke actie volgt een logische volgorde.</p></blockquote>
+<h3>Flow-overzicht</h3>
+<pre data-lang="text"><code class="language-text">Connectie maken (PDO)
+↓
+SELECT uitvoeren
+↓
+Resultaten tonen (foreach)
+↓
+Formulier invullen (POST)
+↓
+Backend validatie
+↓
+INSERT uitvoeren (prepared statement)
+↓
+Session message zetten
+↓
+Redirect (PRG)
+↓
+Flash message tonen</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Elke stap heeft een duidelijke taak.</p></blockquote>
+<h2 id="2-structuur-van-je-project">2. Structuur van je project</h2>
+<blockquote><p><strong>Uitleg</strong><br>Een professioneel project is logisch opgebouwd.<br>Je verdeelt verantwoordelijkheden over meerdere bestanden.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>includes/header.php</code></li>
+<li><code>includes/footer.php</code></li>
+<li><code>includes/db.php</code></li>
+<li>Scheiding van logica en HTML</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">&lt;?php
+require 'includes/db.php';
+require 'includes/header.php';
+?&gt;
+
+&lt;main&gt;
+  &lt;!-- content --&gt;
+&lt;/main&gt;
+
+&lt;?php require 'includes/footer.php'; ?&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Structuur maakt je project onderhoudbaar.</p></blockquote>
+<h2 id="3-studenten-moeten-kunnen-uitleggen">3. Studenten moeten kunnen uitleggen</h2>
+<p>Je moet mondeling kunnen uitleggen:</p>
+<ul>
+<li>Wat PDO is en waarom we het gebruiken</li>
+<li>Waarom prepared statements belangrijk zijn</li>
+<li>Waarom backend validatie nodig is</li>
+<li>Waarom we redirect na POST gebruiken</li>
+<li>Waarom sessions nodig zijn</li>
+<li>Waarom we includes gebruiken</li>
+</ul>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (kort)</h2>
+<h3>1. Alles in één bestand zetten</h3>
+<p>❌ SQL, HTML, validatie en sessions in één groot index.php-bestand</p>
+<p>✅ Verdeel je code logisch over meerdere bestanden</p>
+<h3>2. exit vergeten na header()</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">header("Location: index.php");</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">header("Location: index.php");
+exit;</code></pre>
+<h3>3. Geen duidelijke flow begrijpen</h3>
+<p>❌ Losse stukjes code zonder samenhang</p>
+<p>✅ Begrijpen hoe alle onderdelen samenwerken</p>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>

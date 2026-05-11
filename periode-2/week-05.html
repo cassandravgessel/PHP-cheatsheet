@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Weekschema: Week 5 – Registreren Wat leer je deze week? Tot nu toe werkte jouw applicatie vooral met data zoals taken, notities of opdrachten. Deze week vo">
+  <title>Periode 2 · Week 5 – Registreren | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="2" data-week="5">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 2</div>
+    <a href="../periode-2/week-01.html" class="nav__link "><span>Week 1</span><small>Edit pagina &amp; een item ophalen</small></a>
+    <a href="../periode-2/week-02.html" class="nav__link "><span>Week 2</span><small>UPDATE queries</small></a>
+    <a href="../periode-2/week-03.html" class="nav__link "><span>Week 3</span><small>DELETE</small></a>
+    <a href="../periode-2/week-04.html" class="nav__link "><span>Week 4</span><small>CRUD overzicht</small></a>
+    <a href="../periode-2/week-05.html" class="nav__link active"><span>Week 5</span><small>Registreren</small></a>
+    <a href="../periode-2/week-06.html" class="nav__link "><span>Week 6</span><small>Login</small></a>
+    <a href="../periode-2/week-07.html" class="nav__link "><span>Week 7</span><small>Loginstatus &amp; beveiligde pagina's</small></a>
+    <a href="../periode-2/week-08.html" class="nav__link "><span>Week 8</span><small>Dynamisch menu</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link ">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link is-period">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 2 · Week 5</p>
+  <h1>Week 5 – Registreren<span class="title-accent">;</span></h1>
+  
+</header>
+<h2 id="wat-leer-je-deze-week">Wat leer je deze week?</h2>
+<p>Tot nu toe werkte jouw applicatie vooral met data zoals taken, notities of opdrachten.</p>
+<p>Deze week voeg je gebruikers toe aan je applicatie.</p>
+<p>Je leert hoe een registratiesysteem werkt en hoe je wachtwoorden veilig opslaat in een database.</p>
+<p>Dit is de eerste stap richting een echt login systeem.</p>
+<h2 id="kernconcepten">Kernconcepten</h2>
+<p>Een registratiesysteem werkt eigenlijk als een aanmeldformulier voor jouw app.</p>
+<p>Een gebruiker:</p>
+<ul>
+<li>kiest een gebruikersnaam</li>
+<li>kiest een wachtwoord</li>
+<li>verstuurt het formulier</li>
+<li>PHP slaat de gebruiker op in de database</li>
+</ul>
+<p>Maar:</p>
+<p>wachtwoorden sla je NOOIT letterlijk op.</p>
+<p>Dus niet:</p>
+<pre data-lang="text"><code class="language-text">wachtwoord123</code></pre>
+<p>Waarom niet?</p>
+<p>Als iemand toegang krijgt tot de database, kunnen alle wachtwoorden gelezen worden 😭</p>
+<p>Daarom gebruik je hashing.</p>
+<p>Hashing verandert een wachtwoord in een soort onleesbare code.</p>
+<p>Bijvoorbeeld:</p>
+<pre data-lang="text"><code class="language-text">wachtwoord123
+↓
+$2y$10$8X...</code></pre>
+<p>PHP kan later nog steeds controleren of het wachtwoord klopt, zonder het echte wachtwoord op te slaan.</p>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen?</h2>
+<h3>1. Een registratieformulier maken</h3>
+<blockquote><p><strong>Uitleg</strong><br>Een gebruiker vult een formulier in met een gebruikersnaam en wachtwoord.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>method="POST"</code></li>
+<li><code>input type="text"</code></li>
+<li><code>input type="password"</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="html"><code class="language-html">&lt;form method="POST"&gt;
+
+    &lt;input 
+        type="text" 
+        name="username"
+        placeholder="Gebruikersnaam"
+    &gt;
+
+    &lt;input 
+        type="password" 
+        name="password"
+        placeholder="Wachtwoord"
+    &gt;
+
+    &lt;button type="submit"&gt;
+        Registreren
+    &lt;/button&gt;
+
+&lt;/form&gt;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>type="password"</code> verbergt wat de gebruiker typt.</p></blockquote>
+<h3>2. POST-data uitlezen</h3>
+<blockquote><p><strong>Uitleg</strong><br>PHP ontvangt de formulierdata via <code>$_POST</code>.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>$_POST</code></li>
+<li><code>?? ''</code></li>
+<li>formulierdata uitlezen</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Gebruik een fallback zodat je geen warnings krijgt.</p></blockquote>
+<h3>3. password_hash() gebruiken</h3>
+<blockquote><p><strong>Uitleg</strong><br>Wachtwoorden sla je nooit letterlijk op in de database.<br>Daarom gebruik je <code>password_hash()</code>.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>password_hash()</code></li>
+<li><code>PASSWORD_DEFAULT</code></li>
+<li>hashing</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$hash = password_hash(
+    $password,
+    PASSWORD_DEFAULT
+);</code></pre>
+<h3>Resultaat</h3>
+<pre data-lang="text"><code class="language-text">supergeheimwachtwoord
+↓
+$2y$10$9vM...</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Je slaat de hash op, niet het echte wachtwoord.</p></blockquote>
+<h3>4. Een gebruiker opslaan in de database</h3>
+<blockquote><p><strong>Uitleg</strong><br>Nadat het wachtwoord gehashed is, kun je de gebruiker opslaan.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>INSERT INTO</code></li>
+<li>prepared statements</li>
+<li>placeholders <code>?</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    INSERT INTO users (username, password)
+    VALUES (?, ?)
+");
+
+$stmt-&gt;execute([$username, $hash]);</code></pre>
+<blockquote><p><strong>Onthoud:</strong> De database krijgt de hash, niet het originele wachtwoord.</p></blockquote>
+<h3>5. Een users tabel maken</h3>
+<blockquote><p><strong>Uitleg</strong><br>Voor een login systeem heb je een aparte tabel nodig voor gebruikers.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>CREATE TABLE</code></li>
+<li><code>VARCHAR</code></li>
+<li><code>AUTO_INCREMENT</code></li>
+<li><code>PRIMARY KEY</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="sql"><code class="language-sql">CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    password VARCHAR(255)
+);</code></pre>
+<blockquote><p><strong>Onthoud:</strong> De password kolom moet groot genoeg zijn voor hashes.</p></blockquote>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (met voorbeelden)</h2>
+<h3>1. Het echte wachtwoord opslaan</h3>
+<p>Dit is onveilig.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$stmt-&gt;execute([$username, $password]);</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$stmt-&gt;execute([$username, $hash]);</code></pre>
+<h3>2. password_hash() vergeten</h3>
+<p>Dan wordt het wachtwoord leesbaar opgeslagen in de database.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$password = $_POST['password'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$hash = password_hash(
+    $password,
+    PASSWORD_DEFAULT
+);</code></pre>
+<h3>3. <code>type="text"</code> gebruiken voor wachtwoorden</h3>
+<p>Dan kan iedereen meekijken 😭</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="html"><code class="language-html">&lt;input type="text" name="password"&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="html"><code class="language-html">&lt;input type="password" name="password"&gt;</code></pre>
+<h3>4. Geen prepared statements gebruiken</h3>
+<p>Directe queries zijn minder veilig.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$pdo-&gt;query("
+    INSERT INTO users 
+    VALUES ('$username', '$hash')
+");</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    INSERT INTO users (username, password)
+    VALUES (?, ?)
+");
+
+$stmt-&gt;execute([$username, $hash]);</code></pre>
+<h3>5. Een te kleine password kolom gebruiken</h3>
+<p>Hashes zijn veel langer dan normale wachtwoorden.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="sql"><code class="language-sql">password VARCHAR(20)</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="sql"><code class="language-sql">password VARCHAR(255)</code></pre>
+<h2 id="snippets">Snippets</h2>
+<h3>POST-data uitlezen</h3>
+<pre data-lang="php"><code class="language-php">$username = $_POST['username'] ?? '';
+$password = $_POST['password'] ?? '';</code></pre>
+<h3>Wachtwoord hashen</h3>
+<pre data-lang="php"><code class="language-php">$hash = password_hash(
+    $password,
+    PASSWORD_DEFAULT
+);</code></pre>
+<h3>Gebruiker opslaan</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    INSERT INTO users (username, password)
+    VALUES (?, ?)
+");
+
+$stmt-&gt;execute([$username, $hash]);</code></pre>
+<h3>Redirect gebruiken</h3>
+<pre data-lang="php"><code class="language-php">header('Location: login.php');
+exit;</code></pre>
+<h3>Checken of formulier verstuurd is</h3>
+<pre data-lang="php"><code class="language-php">if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+}</code></pre>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>

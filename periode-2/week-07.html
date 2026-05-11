@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Weekschema: Week 7 – Loginstatus &amp; beveiligde pagina’s Wat leer je deze week? Vorige week kon je gebruikers laten inloggen met een loginformulier en sessio">
+  <title>Periode 2 · Week 7 – Loginstatus &amp; beveiligde pagina’s | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="2" data-week="7">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 2</div>
+    <a href="../periode-2/week-01.html" class="nav__link "><span>Week 1</span><small>Edit pagina &amp; een item ophalen</small></a>
+    <a href="../periode-2/week-02.html" class="nav__link "><span>Week 2</span><small>UPDATE queries</small></a>
+    <a href="../periode-2/week-03.html" class="nav__link "><span>Week 3</span><small>DELETE</small></a>
+    <a href="../periode-2/week-04.html" class="nav__link "><span>Week 4</span><small>CRUD overzicht</small></a>
+    <a href="../periode-2/week-05.html" class="nav__link "><span>Week 5</span><small>Registreren</small></a>
+    <a href="../periode-2/week-06.html" class="nav__link "><span>Week 6</span><small>Login</small></a>
+    <a href="../periode-2/week-07.html" class="nav__link active"><span>Week 7</span><small>Loginstatus &amp; beveiligde pagina's</small></a>
+    <a href="../periode-2/week-08.html" class="nav__link "><span>Week 8</span><small>Dynamisch menu</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link ">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link is-period">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 2 · Week 7</p>
+  <h1>Week 7 – Loginstatus &amp; beveiligde pagina’s<span class="title-accent">;</span></h1>
+  
+</header>
+<h2 id="wat-leer-je-deze-week">Wat leer je deze week?</h2>
+<p>Vorige week kon je gebruikers laten inloggen met een loginformulier en sessions.</p>
+<p>Deze week ga je pagina’s beschermen.</p>
+<p>Niet iedereen mag zomaar overal bij kunnen.</p>
+<p>Je leert hoe PHP controleert of een gebruiker ingelogd is en hoe je bezoekers doorstuurt als dat niet zo is.</p>
+<h2 id="kernconcepten">Kernconcepten</h2>
+<p>Een beveiligde pagina werkt eigenlijk als een portier bij een concert</p>
+<p>De portier kijkt:</p>
+<blockquote><p>“Sta jij op de gastenlijst?”</p></blockquote>
+<p>Bij een webapp doet PHP eigenlijk hetzelfde.</p>
+<p>PHP controleert:</p>
+<ul>
+<li>bestaat er een session?</li>
+<li>is de gebruiker ingelogd?</li>
+<li>mag deze gebruiker deze pagina zien?</li>
+</ul>
+<p>Als dat niet zo is:</p>
+<ul>
+<li>wordt de gebruiker doorgestuurd naar login.php</li>
+</ul>
+<p>Dus ongeveer zo:</p>
+<pre data-lang="text"><code class="language-text">gebruiker opent pagina
+↓
+PHP controleert session
+↓
+ingelogd?
+↓
+ja → pagina tonen
+nee → redirect naar login</code></pre>
+<p>Belangrijk:</p>
+<p>de controle gebeurt server-side in PHP.</p>
+<p>Dus:</p>
+<ul>
+<li>niet alleen een knop verbergen</li>
+<li>niet alleen CSS gebruiken</li>
+<li>PHP bepaalt uiteindelijk toegang</li>
+</ul>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen?</h2>
+<h3>1. session_start() gebruiken</h3>
+<blockquote><p><strong>Uitleg</strong><br>Sessions werken alleen als je ze eerst start.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>session_start()</code></li>
+<li>sessions initialiseren</li>
+<li>bovenaan pagina plaatsen</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">session_start();</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>session_start()</code> moet bovenaan je bestand staan, vóór HTML output.</p></blockquote>
+<h3>2. Loginstatus opslaan in een session</h3>
+<blockquote><p><strong>Uitleg</strong><br>Na een succesvolle login sla je informatie op in <code>$_SESSION</code>.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>$_SESSION</code></li>
+<li>associative arrays</li>
+<li>loginstatus onthouden</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">$_SESSION['user'] = $user['username'];</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Sessions werken als tijdelijk geheugen voor PHP.</p></blockquote>
+<h3>3. Controleren of een gebruiker ingelogd is</h3>
+<blockquote><p><strong>Uitleg</strong><br>Met <code>isset()</code> controleer je of een session bestaat.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>isset()</code></li>
+<li><code>$_SESSION</code></li>
+<li>if-statements</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">if (isset($_SESSION['user'])) {
+
+    echo "Welkom!";
+
+}</code></pre>
+<blockquote><p><strong>Onthoud:</strong> <code>isset()</code> controleert of een waarde bestaat.</p></blockquote>
+<h3>4. Een pagina beveiligen</h3>
+<blockquote><p><strong>Uitleg</strong><br>Als een gebruiker niet ingelogd is, stuur je die terug naar de loginpagina.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>header()</code></li>
+<li><code>exit</code></li>
+<li>redirects</li>
+<li>login checks</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">session_start();
+
+if (!isset($_SESSION['user'])) {
+
+    header('Location: login.php');
+    exit;
+
+}</code></pre>
+<blockquote><p><strong>Onthoud:</strong> De redirect stopt ongewenste toegang tot de pagina.</p></blockquote>
+<h3>5. Uitloggen met session_destroy()</h3>
+<blockquote><p><strong>Uitleg</strong><br>Bij uitloggen verwijder je de session van de gebruiker.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>session_destroy()</code></li>
+<li>redirects</li>
+<li>sessions verwijderen</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">session_start();
+
+session_destroy();
+
+header('Location: login.php');
+exit;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Uitloggen betekent dat de session verwijderd wordt.</p></blockquote>
+<h3>6. Beschermde pagina’s herkennen</h3>
+<blockquote><p><strong>Uitleg</strong><br>Niet elke pagina hoeft beveiligd te zijn.</p></blockquote>
+<h3>Voorbeelden</h3>
+<div class="table-wrap"><table><thead><tr><th>Pagina</th><th>Beveiligd?</th></tr></thead><tbody><tr><td>login.php</td><td>Nee</td></tr><tr><td>register.php</td><td>Nee</td></tr><tr><td>dashboard.php</td><td>Ja</td></tr><tr><td>admin.php</td><td>Ja</td></tr><tr><td>edit.php</td><td>Vaak wel</td></tr></tbody></table></div>
+<blockquote><p><strong>Onthoud:</strong> Pagina’s die data aanpassen zijn meestal beveiligd.</p></blockquote>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (met voorbeelden)</h2>
+<h3>1. session_start() vergeten</h3>
+<p>Dan werken sessions niet.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$_SESSION['user'] = 'Cass';</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">session_start();
+
+$_SESSION['user'] = 'Cass';</code></pre>
+<h3>2. HTML tonen vóór session_start()</h3>
+<p>Dan krijg je vaak errors.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">&lt;h1&gt;Welkom&lt;/h1&gt;
+
+&lt;?php
+session_start();
+?&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">&lt;?php
+session_start();
+?&gt;</code></pre>
+<h3>3. Alleen een knop verbergen</h3>
+<p>Een verborgen knop betekent niet dat een pagina beveiligd is.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">&lt;?php if($loggedIn): ?&gt;
+    &lt;a href="admin.php"&gt;Admin&lt;/a&gt;
+&lt;?php endif; ?&gt;</code></pre>
+<p>zonder beveiliging in <code>admin.php</code>.</p>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">session_start();
+
+if (!isset($_SESSION['user'])) {
+
+    header('Location: login.php');
+    exit;
+
+}</code></pre>
+<h3>4. exit vergeten na redirect</h3>
+<p>Dan kan PHP soms nog verder uitvoeren.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">header('Location: login.php');</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">header('Location: login.php');
+exit;</code></pre>
+<h3>5. session_destroy() gebruiken zonder session_start()</h3>
+<p>Dan bestaat de session niet.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">session_destroy();</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">session_start();
+
+session_destroy();</code></pre>
+<h2 id="snippets">Snippets</h2>
+<h3>Session starten</h3>
+<pre data-lang="php"><code class="language-php">session_start();</code></pre>
+<h3>Loginstatus opslaan</h3>
+<pre data-lang="php"><code class="language-php">$_SESSION['user'] = $user['username'];</code></pre>
+<h3>Checken of gebruiker ingelogd is</h3>
+<pre data-lang="php"><code class="language-php">if (isset($_SESSION['user'])) {
+
+}</code></pre>
+<h3>Pagina beveiligen</h3>
+<pre data-lang="php"><code class="language-php">session_start();
+
+if (!isset($_SESSION['user'])) {
+
+    header('Location: login.php');
+    exit;
+
+}</code></pre>
+<h3>Uitloggen</h3>
+<pre data-lang="php"><code class="language-php">session_start();
+
+session_destroy();
+
+header('Location: login.php');
+exit;</code></pre>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>

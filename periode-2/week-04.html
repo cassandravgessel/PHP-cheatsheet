@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Weekschema: Week 4 – CRUD overzicht Wat leer je deze week? In de afgelopen weken heb je geleerd hoe je: data toevoegt data uitleest data aanpast data verwi">
+  <title>Periode 2 · Week 4 – CRUD overzicht | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="2" data-week="4">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 2</div>
+    <a href="../periode-2/week-01.html" class="nav__link "><span>Week 1</span><small>Edit pagina &amp; een item ophalen</small></a>
+    <a href="../periode-2/week-02.html" class="nav__link "><span>Week 2</span><small>UPDATE queries</small></a>
+    <a href="../periode-2/week-03.html" class="nav__link "><span>Week 3</span><small>DELETE</small></a>
+    <a href="../periode-2/week-04.html" class="nav__link active"><span>Week 4</span><small>CRUD overzicht</small></a>
+    <a href="../periode-2/week-05.html" class="nav__link "><span>Week 5</span><small>Registreren</small></a>
+    <a href="../periode-2/week-06.html" class="nav__link "><span>Week 6</span><small>Login</small></a>
+    <a href="../periode-2/week-07.html" class="nav__link "><span>Week 7</span><small>Loginstatus &amp; beveiligde pagina's</small></a>
+    <a href="../periode-2/week-08.html" class="nav__link "><span>Week 8</span><small>Dynamisch menu</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link ">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link is-period">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 2 · Week 4</p>
+  <h1>Week 4 – CRUD overzicht<span class="title-accent">;</span></h1>
+  
+</header>
+<h2 id="wat-leer-je-deze-week">Wat leer je deze week?</h2>
+<p>In de afgelopen weken heb je geleerd hoe je:</p>
+<ul>
+<li>data toevoegt</li>
+<li>data uitleest</li>
+<li>data aanpast</li>
+<li>data verwijdert</li>
+</ul>
+<p>Deze week breng je alles samen in één complete CRUD-app.</p>
+<p>Je gaat beter begrijpen hoe alle onderdelen samenwerken en hoe een echte webapplicatie flow heeft tussen formulieren, PHP en de database.</p>
+<h2 id="kernconcepten">Kernconcepten</h2>
+<p>CRUD is eigenlijk de basis van bijna elke webapp.</p>
+<p>Denk bijvoorbeeld aan:</p>
+<ul>
+<li>een to-do app</li>
+<li>Instagram posts</li>
+<li>Netflix profielen</li>
+<li>een webshop</li>
+<li>een agenda</li>
+</ul>
+<p>Bijna overal gebeurt dit:</p>
+<pre data-lang="text"><code class="language-text">iets toevoegen
+↓
+iets bekijken
+↓
+iets aanpassen
+↓
+iets verwijderen</code></pre>
+<p>Dat noemen we CRUD.</p>
+<p>CRUD staat voor:</p>
+<pre data-lang="text"><code class="language-text">Create
+Read
+Update
+Delete</code></pre>
+<p>Oftewel:</p>
+<ul>
+<li>iets maken</li>
+<li>iets lezen</li>
+<li>iets aanpassen</li>
+<li>iets verwijderen</li>
+</ul>
+<p>Deze week draait vooral om:</p>
+<blockquote><p>“begrijpen hoe alles samenwerkt.”</p></blockquote>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen?</h2>
+<h3>1. Wat CRUD betekent</h3>
+<blockquote><p><strong>Uitleg</strong><br>CRUD zijn de vier basisacties van een database-applicatie.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>Create</li>
+<li>Read</li>
+<li>Update</li>
+<li>Delete</li>
+<li>welke SQL-query bij elke actie hoort</li>
+</ul>
+<h3>Overzicht</h3>
+<div class="table-wrap"><table><thead><tr><th>Actie</th><th>SQL</th><th>Betekenis</th></tr></thead><tbody><tr><td>Create</td><td>INSERT</td><td>Nieuwe data toevoegen</td></tr><tr><td>Read</td><td>SELECT</td><td>Data ophalen</td></tr><tr><td>Update</td><td>UPDATE</td><td>Data aanpassen</td></tr><tr><td>Delete</td><td>DELETE</td><td>Data verwijderen</td></tr></tbody></table></div>
+<blockquote><p><strong>Onthoud:</strong> Vrijwel elke database-app gebruikt CRUD.</p></blockquote>
+<h3>2. De flow van een CRUD-app begrijpen</h3>
+<blockquote><p><strong>Uitleg</strong><br>Een gebruiker doet iets in de browser.<br>PHP verwerkt die actie en praat met de database.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>formulieren</li>
+<li>GET en POST</li>
+<li>queries uitvoeren</li>
+<li>redirects gebruiken</li>
+</ul>
+<h3>Voorbeeldflow</h3>
+<pre data-lang="text"><code class="language-text">gebruiker vult formulier in
+↓
+formulier verstuurt data
+↓
+PHP ontvangt data
+↓
+query draait
+↓
+database verandert
+↓
+redirect
+↓
+nieuwe data zichtbaar</code></pre>
+<blockquote><p><strong>Onthoud:</strong> PHP zit eigenlijk tussen de gebruiker en de database in.</p></blockquote>
+<h3>3. Verschillende pagina’s gebruiken</h3>
+<blockquote><p><strong>Uitleg</strong><br>Grote applicaties bestaan meestal uit meerdere bestanden met verschillende verantwoordelijkheden.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>overzichtspagina</li>
+<li>createpagina</li>
+<li>editpagina</li>
+<li>deletepagina</li>
+<li>includes gebruiken</li>
+</ul>
+<h3>Voorbeeldstructuur</h3>
+<pre data-lang="text"><code class="language-text">/includes
+    db.php
+    header.php
+    nav.php
+
+index.php
+create.php
+edit.php
+delete.php</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Een duidelijke structuur voorkomt chaos.</p></blockquote>
+<h3>4. Redirects gebruiken</h3>
+<blockquote><p><strong>Uitleg</strong><br>Na CREATE, UPDATE of DELETE stuur je de gebruiker meestal terug naar het overzicht.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>header()</code></li>
+<li><code>exit</code></li>
+<li>redirect flow</li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="php"><code class="language-php">header('Location: index.php');
+exit;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Redirects zorgen voor een prettigere flow en voorkomen rare refresh-problemen.</p></blockquote>
+<h3>5. CRUD herkennen in een echte applicatie</h3>
+<blockquote><p><strong>Uitleg</strong><br>CRUD zit letterlijk overal op internet.</p></blockquote>
+<h3>Voorbeelden</h3>
+<div class="table-wrap"><table><thead><tr><th>Situatie</th><th>CRUD actie</th></tr></thead><tbody><tr><td>Nieuwe Instagram post maken</td><td>Create</td></tr><tr><td>Posts bekijken</td><td>Read</td></tr><tr><td>Profiel aanpassen</td><td>Update</td></tr><tr><td>Bericht verwijderen</td><td>Delete</td></tr></tbody></table></div>
+<blockquote><p><strong>Onthoud:</strong> CRUD is niet alleen een schoolding. Dit is hoe echte apps werken.</p></blockquote>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (met voorbeelden)</h2>
+<h3>1. CRUD-acties door elkaar halen</h3>
+<p>Soms gebruiken studenten per ongeluk de verkeerde query voor een actie.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="sql"><code class="language-sql">UPDATE items</code></pre>
+<p>om data op te halen.</p>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="sql"><code class="language-sql">SELECT * FROM items</code></pre>
+<h3>2. Alles in één gigantisch bestand zetten</h3>
+<p>Dan wordt je project heel snel onoverzichtelijk.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="text"><code class="language-text">index.php doet:
+- create
+- read
+- update
+- delete
+- login
+- alles 😭</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="text"><code class="language-text">index.php
+create.php
+edit.php
+delete.php</code></pre>
+<h3>3. Geen redirects gebruiken</h3>
+<p>Dan blijven gebruikers op rare tussenpagina’s hangen.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">echo "Opgeslagen!";</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">header('Location: index.php');
+exit;</code></pre>
+<h3>4. GET en POST door elkaar halen</h3>
+<p>GET gebruik je meestal voor:</p>
+<ul>
+<li>pagina’s openen</li>
+<li>ids meesturen</li>
+</ul>
+<p>POST gebruik je meestal voor:</p>
+<ul>
+<li>data aanpassen</li>
+<li>formulieren versturen</li>
+</ul>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$title = $_GET['title'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';</code></pre>
+<h3>5. Geen WHERE gebruiken bij UPDATE of DELETE</h3>
+<p>Dan verander of verwijder je ALLES.</p>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="sql"><code class="language-sql">DELETE FROM items</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="sql"><code class="language-sql">DELETE FROM items
+WHERE id = ?</code></pre>
+<h2 id="snippets">Snippets</h2>
+<h3>CREATE query</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    INSERT INTO items (title)
+    VALUES (?)
+");
+
+$stmt-&gt;execute([$title]);</code></pre>
+<h3>READ query</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;query("
+    SELECT * FROM items
+");
+
+$items = $stmt-&gt;fetchAll(PDO::FETCH_ASSOC);</code></pre>
+<h3>UPDATE query</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    UPDATE items
+    SET title = ?
+    WHERE id = ?
+");
+
+$stmt-&gt;execute([$title, $id]);</code></pre>
+<h3>DELETE query</h3>
+<pre data-lang="php"><code class="language-php">$stmt = $pdo-&gt;prepare("
+    DELETE FROM items
+    WHERE id = ?
+");
+
+$stmt-&gt;execute([$id]);</code></pre>
+<h3>Redirect gebruiken</h3>
+<pre data-lang="php"><code class="language-php">header('Location: index.php');
+exit;</code></pre>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>

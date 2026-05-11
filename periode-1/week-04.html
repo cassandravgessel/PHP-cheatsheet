@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Week 4 – Forms (GET &amp; POST) In week 4 leer je hoe gebruikers data naar jouw applicatie sturen. Je leert het verschil tussen GET en POST en hoe je formulier">
+  <title>Periode 1 · Week 4 – Forms (GET &amp; POST) | CassCodes PHP Cheatsheet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/prism.css">
+</head>
+<body data-period="1" data-week="4">
+  <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar__header">
+        <a class="logo" href="../index.html" aria-label="CassCodes home">CassCodes<span class="logo-accent">;</span></a>
+        <p class="brand-title">PHP Cheatsheet</p>
+        <p class="brand-subtitle">Eerstejaars Software Development</p>
+        <form class="search-container" role="search">
+          <label class="sr-only" for="search-input">Zoek in alle weken</label>
+          <input id="search-input" class="search-input" type="search" autocomplete="off" placeholder="Zoek in alle weken...">
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </form>
+      </div>
+      <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="nav__title">Start</div>
+    <a href="../index.html" class="nav__link ">Home</a>
+    <div class="nav__title">Periode 1</div>
+    <a href="../periode-1/week-01.html" class="nav__link "><span>Week 1</span><small>PHP Basics</small></a>
+    <a href="../periode-1/week-02.html" class="nav__link "><span>Week 2</span><small>Projectstructuur &amp; Includes</small></a>
+    <a href="../periode-1/week-03.html" class="nav__link "><span>Week 3</span><small>Database &amp; READ</small></a>
+    <a href="../periode-1/week-04.html" class="nav__link active"><span>Week 4</span><small>Forms (GET &amp; POST)</small></a>
+    <a href="../periode-1/week-05.html" class="nav__link "><span>Week 5</span><small>Backend Validatie</small></a>
+    <a href="../periode-1/week-06.html" class="nav__link "><span>Week 6</span><small>INSERT &amp; Redirect (PRG)</small></a>
+    <a href="../periode-1/week-07.html" class="nav__link "><span>Week 7</span><small>Sessions &amp; Feedback</small></a>
+    <a href="../periode-1/week-08.html" class="nav__link "><span>Week 8</span><small>Overzicht &amp; Uitleggen</small></a>
+    <div class="nav__title">Wisselen</div>
+    <a href="../periode-1/week-01.html" class="nav__link is-period">Naar periode 1</a>
+    <a href="../periode-2/week-01.html" class="nav__link ">Naar periode 2</a>
+  </nav>
+    </aside>
+    <main class="main">
+      <div class="content">
+<header class="page-header">
+  <p class="eyebrow">Periode 1 · Week 4</p>
+  <h1>Week 4 – Forms (GET &amp; POST)<span class="title-accent">;</span></h1>
+  <p class="intro">In week 4 leer je hoe gebruikers data naar jouw applicatie sturen.<br>Je leert het verschil tussen GET en POST en hoe je formulierdata verwerkt.</p>
+</header>
+<h2 id="wat-moet-je-kennen">Wat moet je kennen (samenvatting)</h2>
+<ul>
+<li>Verschil tussen GET en POST</li>
+<li><code>$_GET</code> en <code>$_POST</code></li>
+<li>Formulier maken met <code>method</code> en <code>action</code></li>
+<li>Het belang van <code>name</code> in inputvelden</li>
+<li>Data veilig uitlezen met <code>?? ''</code></li>
+</ul>
+<h2 id="1-get-vs-post">1. GET vs POST</h2>
+<blockquote><p><strong>Uitleg</strong><br>GET zet data in de URL. POST verstuurt data via de request body.<br>GET gebruik je vaak voor filters of id’s. POST gebruik je voor formulieren.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>GET = zichtbaar in URL</li>
+<li>POST = niet zichtbaar in URL</li>
+<li><code>$_GET</code></li>
+<li><code>$_POST</code></li>
+</ul>
+<h3>Voorbeeld (GET)</h3>
+<p>URL:</p>
+<pre data-lang="text"><code class="language-text">details.php?id=3</code></pre>
+<pre data-lang="php"><code class="language-php">$id = $_GET['id'] ?? '';
+echo $id;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Alles wat in GET zit, is zichtbaar in de URL.</p></blockquote>
+<h2 id="2-formulier-met-post">2. Formulier met POST</h2>
+<blockquote><p><strong>Uitleg</strong><br>Met een HTML-formulier stuur je data naar een ander PHP-bestand.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li><code>&lt;form method="POST" action="verwerk.php"&gt;</code></li>
+<li><code>name</code> attribuut is verplicht</li>
+<li><code>$_POST['veldnaam']</code></li>
+</ul>
+<h3>Voorbeeld</h3>
+<pre data-lang="html"><code class="language-html">&lt;form method="POST" action="verwerk.php"&gt;
+    &lt;label for="title"&gt;Titel&lt;/label&gt;
+    &lt;input id="title" name="title" type="text"&gt;
+    &lt;button type="submit"&gt;Opslaan&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';
+echo $title;</code></pre>
+<blockquote><p><strong>Onthoud:</strong> Zonder <code>name</code> wordt er niets verstuurd.</p></blockquote>
+<h2 id="3-data-veilig-uitlezen">3. Data veilig uitlezen</h2>
+<blockquote><p><strong>Uitleg</strong><br>Als een veld niet bestaat, krijg je een foutmelding.<br>Met <code>?? ''</code> voorkom je warnings.</p></blockquote>
+<h3>Wat moet je kennen</h3>
+<ul>
+<li>Null coalescing operator <code>??</code></li>
+<li>Fouten voorkomen</li>
+</ul>
+<h3>Voorbeeld</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'];</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="php"><code class="language-php">$title = $_POST['title'] ?? '';</code></pre>
+<h2 id="veelgemaakte-fouten">Veelgemaakte fouten (kort)</h2>
+<h3>1. <code>name</code> vergeten</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<pre data-lang="html"><code class="language-html">&lt;input id="title"&gt;</code></pre>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<pre data-lang="html"><code class="language-html">&lt;input id="title" name="title"&gt;</code></pre>
+<h3>2. GET gebruiken voor gevoelige data</h3>
+<p class="mistake-label mistake-label--wrong">Fout</p>
+<p><code>/login.php?password=1234</code></p>
+<p class="mistake-label mistake-label--correct">Beter</p>
+<p>Gebruik POST voor formulieren met gevoelige input.</p>
+<h3>3. $_POST gebruiken zonder method="POST"</h3>
+<p>❌ Form gebruikt GET maar je leest <code>$_POST</code></p>
+<p>✅ Zorg dat method en superglobal overeenkomen.</p>
+<section id="video-coming-soon" class="content-section video-section">
+  <h2>Video (coming soon)</h2>
+  <div class="video-card">
+    <div class="video-card__text">
+      <h3>Video komt eraan</h3>
+      <p>Zodra de uitlegvideo beschikbaar is, wordt alleen de YouTube-ID vervangen.</p>
+    </div>
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-templating.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+  <script src="../assets/js/app.js" defer></script>
+</body>
+</html>
