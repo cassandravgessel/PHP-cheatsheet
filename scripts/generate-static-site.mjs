@@ -54,6 +54,14 @@ function inlineMarkdown(value) {
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
 }
 
+function relabelPeriodReferences(value) {
+  return value
+    .replace(/\bPeriode 1\b/g, "Periode 3")
+    .replace(/\bperiode 1\b/g, "periode 3")
+    .replace(/\bPeriode 2\b/g, "Periode 4")
+    .replace(/\bperiode 2\b/g, "periode 4");
+}
+
 function convertTable(lines) {
   const rows = lines
     .filter((line) => line.trim())
@@ -232,7 +240,7 @@ function videoSection() {
 
 function navigation(period, activeWeek, fromRoot = false) {
   const prefix = fromRoot ? "" : "../";
-  const weeks = period === 1 ? periodOne : periodTwo;
+  const weeks = period === 3 ? periodOne : periodTwo;
 
   return `<nav class="nav" aria-label="Hoofdnavigatie">
     <div class="nav__title">Start</div>
@@ -250,16 +258,16 @@ function navigation(period, activeWeek, fromRoot = false) {
       )
       .join("\n    ")}
     <div class="nav__title">Wisselen</div>
-    <a href="${prefix}periode-1/week-01.html" class="nav__link ${
-      period === 1 ? "is-period" : ""
-    }">Naar periode 1</a>
-    <a href="${prefix}periode-2/week-01.html" class="nav__link ${
-      period === 2 ? "is-period" : ""
-    }">Naar periode 2</a>
+    <a href="${prefix}periode-3/week-01.html" class="nav__link ${
+      period === 3 ? "is-period" : ""
+    }">Naar periode 3</a>
+    <a href="${prefix}periode-4/week-01.html" class="nav__link ${
+      period === 4 ? "is-period" : ""
+    }">Naar periode 4</a>
   </nav>`;
 }
 
-function pageShell({ title, description, body, period = 1, activeWeek = 0, rootRelative = "../" }) {
+function pageShell({ title, description, body, period = 3, activeWeek = 0, rootRelative = "../" }) {
   return `<!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -330,15 +338,17 @@ function pageBody(markdown, period, week, fallbackTitle) {
 ${contentHtml}`;
 }
 
-await fs.mkdir(path.join(root, "periode-1"), { recursive: true });
-await fs.mkdir(path.join(root, "periode-2"), { recursive: true });
+await fs.mkdir(path.join(root, "periode-3"), { recursive: true });
+await fs.mkdir(path.join(root, "periode-4"), { recursive: true });
 
 const searchPages = [];
 
 async function writeWeeks(period, weeks) {
   for (const [index, [file, fallbackTitle]] of weeks.entries()) {
     const week = index + 1;
-    const markdown = await fs.readFile(path.join(root, "content", file), "utf8");
+    const markdown = relabelPeriodReferences(
+      await fs.readFile(path.join(root, "content", file), "utf8"),
+    );
     const title = markdown.match(/^#\s+(.+)$/m)?.[1]?.trim() || `Week ${week} - ${fallbackTitle}`;
     const cleanTitle = title.replace(/^Weekschema:\s*/i, "");
     const url = `periode-${period}/week-${String(week).padStart(2, "0")}.html`;
@@ -364,8 +374,8 @@ async function writeWeeks(period, weeks) {
   }
 }
 
-await writeWeeks(1, periodOne);
-await writeWeeks(2, periodTwo);
+await writeWeeks(3, periodOne);
+await writeWeeks(4, periodTwo);
 
 const homeBody = `<header class="hero">
   <p class="eyebrow">Eerstejaars Software Development</p>
@@ -374,7 +384,7 @@ const homeBody = `<header class="hero">
 </header>
 <section class="period-grid" aria-label="Periodes">
   <article class="period-card">
-    <p class="eyebrow">Periode 1</p>
+    <p class="eyebrow">Periode 3</p>
     <h2>PHP basis, Create &amp; Read</h2>
     <p>Je leert hoe PHP op de server werkt, hoe je projecten structureert en hoe je data leest en toevoegt met PDO.</p>
     <ul>
@@ -382,10 +392,10 @@ const homeBody = `<header class="hero">
       <li>Includes, arrays en projectstructuur</li>
       <li>Database READ, formulieren, validatie en INSERT</li>
     </ul>
-    <a class="button-link" href="periode-1/week-01.html">Start periode 1</a>
+    <a class="button-link" href="periode-3/week-01.html">Start periode 3</a>
   </article>
   <article class="period-card">
-    <p class="eyebrow">Periode 2</p>
+    <p class="eyebrow">Periode 4</p>
     <h2>CRUD, login &amp; sessions</h2>
     <p>Je bouwt verder aan bewerken, verwijderen, registreren, inloggen en pagina's beschermen met sessions.</p>
     <ul>
@@ -393,7 +403,7 @@ const homeBody = `<header class="hero">
       <li>CRUD-overzicht en accountregistratie</li>
       <li>Login, beveiligde pagina's en dynamische menu's</li>
     </ul>
-    <a class="button-link" href="periode-2/week-01.html">Start periode 2</a>
+    <a class="button-link" href="periode-4/week-01.html">Start periode 4</a>
   </article>
 </section>
 <section class="quick-start">
@@ -407,7 +417,7 @@ await fs.writeFile(
     title: "Homepage",
     description: "PHP Cheatsheet voor eerstejaars Software Development.",
     body: homeBody,
-    period: 1,
+    period: 3,
     activeWeek: 0,
     rootRelative: "",
   }),
@@ -417,7 +427,7 @@ for (let index = 1; index <= 8; index += 1) {
   const week = String(index).padStart(2, "0");
   await fs.writeFile(
     path.join(root, `week-${week}.html`),
-    `<!DOCTYPE html><html lang="nl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="refresh" content="0; url=periode-1/week-${week}.html"><title>Doorsturen naar periode 1 week ${index}</title><link rel="canonical" href="periode-1/week-${week}.html"></head><body><p>Deze pagina staat nu op <a href="periode-1/week-${week}.html">periode 1 week ${index}</a>.</p></body></html>\n`,
+    `<!DOCTYPE html><html lang="nl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta http-equiv="refresh" content="0; url=periode-3/week-${week}.html"><title>Doorsturen naar periode 3 week ${index}</title><link rel="canonical" href="periode-3/week-${week}.html"></head><body><p>Deze pagina staat nu op <a href="periode-3/week-${week}.html">periode 3 week ${index}</a>.</p></body></html>\n`,
   );
 }
 

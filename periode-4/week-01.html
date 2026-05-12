@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Weekschema: Week 1 – Edit pagina &amp; één item ophalen Wat leer je deze week? In periode 1 kon je al meerdere items uit de database ophalen en tonen op een pa">
-  <title>Periode 2 · Week 1 – Edit pagina &amp; één item ophalen | CassCodes PHP Cheatsheet</title>
+  <meta name="description" content="Weekschema: Week 1 – Edit pagina &amp; één item ophalen Wat leer je deze week? In periode 3 kon je al meerdere items uit de database ophalen en tonen op een pa">
+  <title>Periode 4 · Week 1 – Edit pagina &amp; één item ophalen | CassCodes PHP Cheatsheet</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/prism.css">
 </head>
-<body data-period="2" data-week="1">
+<body data-period="4" data-week="1">
   <button id="hamburger" class="hamburger" type="button" aria-label="Menu openen" aria-controls="sidebar" aria-expanded="false">☰</button>
   <div class="app">
     <aside id="sidebar" class="sidebar">
@@ -26,32 +26,32 @@
       <nav class="nav" aria-label="Hoofdnavigatie">
     <div class="nav__title">Start</div>
     <a href="../index.html" class="nav__link ">Home</a>
-    <div class="nav__title">Periode 2</div>
-    <a href="../periode-2/week-01.html" class="nav__link active"><span>Week 1</span><small>Edit pagina &amp; een item ophalen</small></a>
-    <a href="../periode-2/week-02.html" class="nav__link "><span>Week 2</span><small>UPDATE queries</small></a>
-    <a href="../periode-2/week-03.html" class="nav__link "><span>Week 3</span><small>DELETE</small></a>
-    <a href="../periode-2/week-04.html" class="nav__link "><span>Week 4</span><small>CRUD overzicht</small></a>
-    <a href="../periode-2/week-05.html" class="nav__link "><span>Week 5</span><small>Registreren</small></a>
-    <a href="../periode-2/week-06.html" class="nav__link "><span>Week 6</span><small>Login</small></a>
-    <a href="../periode-2/week-07.html" class="nav__link "><span>Week 7</span><small>Loginstatus &amp; beveiligde pagina's</small></a>
-    <a href="../periode-2/week-08.html" class="nav__link "><span>Week 8</span><small>Dynamisch menu</small></a>
+    <div class="nav__title">Periode 4</div>
+    <a href="../periode-4/week-01.html" class="nav__link active"><span>Week 1</span><small>Edit pagina &amp; een item ophalen</small></a>
+    <a href="../periode-4/week-02.html" class="nav__link "><span>Week 2</span><small>UPDATE queries</small></a>
+    <a href="../periode-4/week-03.html" class="nav__link "><span>Week 3</span><small>DELETE</small></a>
+    <a href="../periode-4/week-04.html" class="nav__link "><span>Week 4</span><small>CRUD overzicht</small></a>
+    <a href="../periode-4/week-05.html" class="nav__link "><span>Week 5</span><small>Registreren</small></a>
+    <a href="../periode-4/week-06.html" class="nav__link "><span>Week 6</span><small>Login</small></a>
+    <a href="../periode-4/week-07.html" class="nav__link "><span>Week 7</span><small>Loginstatus &amp; beveiligde pagina's</small></a>
+    <a href="../periode-4/week-08.html" class="nav__link "><span>Week 8</span><small>Dynamisch menu</small></a>
     <div class="nav__title">Wisselen</div>
-    <a href="../periode-1/week-01.html" class="nav__link ">Naar periode 1</a>
-    <a href="../periode-2/week-01.html" class="nav__link is-period">Naar periode 2</a>
+    <a href="../periode-3/week-01.html" class="nav__link ">Naar periode 3</a>
+    <a href="../periode-4/week-01.html" class="nav__link is-period">Naar periode 4</a>
   </nav>
     </aside>
     <main class="main">
       <div class="content">
 <header class="page-header">
-  <p class="eyebrow">Periode 2 · Week 1</p>
+  <p class="eyebrow">Periode 4 · Week 1</p>
   <h1>Week 1 – Edit pagina &amp; één item ophalen<span class="title-accent">;</span></h1>
   
 </header>
 <h2 id="wat-leer-je-deze-week">Wat leer je deze week?</h2>
-<p>In periode 1 kon je al meerdere items uit de database ophalen en tonen op een pagina.</p>
+<p>In periode 3 kon je al meerdere items uit de database ophalen en tonen op een pagina.</p>
 <p>Deze week ga je een stap verder: je haalt één specifiek item op.</p>
 <p>Dat heb je nodig voor een editpagina, want voordat je iets kunt aanpassen, moet je eerst weten welk item je gaat aanpassen.</p>
-<h2 id="kernconcepten">Kernconcepten</h2>
+<h2 id="kernconcepten">Kernconcepten (in normale mensentaal)</h2>
 <p>Een editpagina werkt eigenlijk als een formulier dat al is ingevuld.</p>
 <p>Stel: je hebt een lijst met huiswerkopdrachten.</p>
 <p>Als je op “bewerken” klikt bij één opdracht, moet PHP weten welke opdracht je bedoelt. Daarom geef je het <code>id</code> van dat item mee in de URL.</p>
@@ -99,7 +99,7 @@ echo $id;</code></pre>
 &lt;/a&gt;</code></pre>
 <blockquote><p><strong>Onthoud:</strong> Zonder id weet de editpagina niet welk item aangepast moet worden.</p></blockquote>
 <h3>3. Eén item ophalen met SELECT WHERE</h3>
-<blockquote><p><strong>Uitleg</strong><br>In periode 1 gebruikte je <code>SELECT</code> om meerdere items op te halen.<br>Nu wil je één specifiek item ophalen. Daarvoor gebruik je <code>WHERE</code>.</p></blockquote>
+<blockquote><p><strong>Uitleg</strong><br>In periode 3 gebruikte je <code>SELECT</code> om meerdere items op te halen.<br>Nu wil je één specifiek item ophalen. Daarvoor gebruik je <code>WHERE</code>.</p></blockquote>
 <h3>Wat moet je kennen</h3>
 <ul>
 <li><code>SELECT * FROM</code></li>
